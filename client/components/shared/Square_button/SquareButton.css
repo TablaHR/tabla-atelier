@@ -1,0 +1,10 @@
+/* webpackIgnore: true */
+
+.add{
+  position: relative;
+}
+.add::after {
+  position: absolute;
+  content: " +";
+  right: 0;
+}
