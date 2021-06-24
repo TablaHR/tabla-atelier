@@ -97,7 +97,7 @@ export default class Card extends Component {
   render() {
     if (this.props.cur === 'blank') {
       return <div className='card' >
-      <img src = {image} onClick={()=>{this.props.add(this.props.item_id)}} ></img>
+      <img src = {"./sample.jpeg"} onClick={()=>{this.props.add(this.props.item_id)}} ></img>
       <div>Add current product!</div>
     </div>
 
@@ -139,7 +139,7 @@ export default class Card extends Component {
       return (
 
         <div className='card' >
-          <img src = {image} onClick={this.handleClickOpen} ></img>
+          <img src = {image || './sample.jpeg'} onClick={this.handleClickOpen} ></img>
           <div className="icon" onClick={()=>{
             this.props.add();
           }}>{this.props.icon}</div>
