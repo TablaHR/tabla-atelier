@@ -64,9 +64,9 @@ export default class Card extends Component {
   componentDidMount() {
     if (this.props.itemId !== undefined){
     axios.all([
-      axios.post('http://localhost:3000/card', {id: this.props.itemId}),
-      axios.post('http://localhost:3000/review/meta', {id: this.props.itemId}),
-      axios.post('http://localhost:3000/cardimage', {id: this.props.itemId}),
+      axios.post('/card', {id: this.props.itemId}),
+      axios.post('/review/meta', {id: this.props.itemId}),
+      axios.post('/cardimage', {id: this.props.itemId}),
     ]).then(axios.spread((data1, data2, data3) => {
       const res = data3.data;
       let cur = res.results[0];

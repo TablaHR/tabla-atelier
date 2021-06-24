@@ -31,8 +31,8 @@ export default class Related extends Component {
     const myoutfits = JSON.parse(localStorage.getItem('myoutfits')|| '[]');
     this.setState({myoutfits});
     axios.all([
-      axios.post('http://localhost:3000/card', {id: this.props.id}),
-      axios.post('http://localhost:3000/related', {id: this.props.id}),
+      axios.post('/card', {id: this.props.id}),
+      axios.post('/related', {id: this.props.id}),
     ]).then(axios.spread((data1, data2) => {
       this.setState({
         cur: data1.data,
