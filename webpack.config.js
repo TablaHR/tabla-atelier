@@ -1,12 +1,16 @@
+const Dotenv = require('dotenv-webpack');
 var path = require("path");
 var SRC_DIR = path.join(__dirname, "/client/src");
 var DIST_DIR = path.join(__dirname, "/client/dist");
 
 module.exports = {
+  plugins: [
+    new Dotenv()
+  ],
   entry: `./client/index.jsx`,
   output: {
     filename: "bundle.js",
-    path: path.resolve(__dirname, "client/dist/")
+    path: DIST_DIR,
   },
   module: {
     rules: [
