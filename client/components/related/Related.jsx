@@ -46,7 +46,7 @@ export default class Related extends Component {
     if (this.props.id!== prevProps.id){
       axios.all([
         axios.post(`${process.env.EXPRESS_SERVER}/card`, {id: this.props.id}),
-        axios.post(`${process.env.EXPRESS_SERVER}/card`, {id: this.props.id}),
+        axios.post(`${process.env.EXPRESS_SERVER}/related`, {id: this.props.id}),
       ]).then(axios.spread((data1, data2) => {
         this.setState({
           cur: data1.data,
@@ -93,7 +93,7 @@ export default class Related extends Component {
 
       return (
         <div>
-          <h1 style={{color: 'gray'}}>RELATED PRODUCTS</h1>
+          <h1 style={{color: 'gray'}}>RELATED PRODUCTS {this.props.id}</h1>
           <Swiper {...params}>
             {items.map((itemId) =>(
               <SwiperSlide key={itemId}>
