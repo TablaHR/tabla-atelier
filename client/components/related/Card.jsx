@@ -7,8 +7,6 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import DialogContent from '@material-ui/core/DialogContent';
 import Comparing from './Comparing.jsx';
 import './Card.css';
-
-
 import Stars from '../shared/Stars.jsx';
 
 function SimpleDialog(props) {
@@ -139,10 +137,13 @@ export default class Card extends Component {
       return (
 
         <div className='card' >
-          <img src = {image} onClick={this.handleClickOpen} ></img>
-          <div className="icon" onClick={()=>{
-            this.props.add();
-          }}>{this.props.icon}</div>
+          <img src = {image} onClick={()=>this.props.changeProduct(this.props.itemId)}></img>
+          <div className="icon"
+          onClick={this.props.add||this.handleClickOpen}
+          // onClick={()=>{
+          //   this.props.add();
+          // }}
+          >{this.props.icon}</div>
           <div>{item.category}</div>
           <div>{item.name}</div>
           <div>{displayPrice}</div>
