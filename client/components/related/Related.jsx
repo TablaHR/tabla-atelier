@@ -32,8 +32,8 @@ export default class Related extends Component {
     this.setState({myoutfits});
     log(this.props.id);
     axios.all([
-      axios.post(`/card`, {id: this.props.id}),
-      axios.post(`/related`, {id: this.props.id}),
+      axios.post(`${process.env.EXPRESS_SERVER}/card`, {id: this.props.id}),
+      axios.post(`${process.env.EXPRESS_SERVER}/related`, {id: this.props.id}),
     ]).then(axios.spread((data1, data2) => {
       this.setState({
         cur: data1.data,
@@ -45,8 +45,8 @@ export default class Related extends Component {
   componentDidUpdate(prevProps){
     if (this.props.id!== prevProps.id){
       axios.all([
-        axios.post('/card', {id: this.props.id}),
-        axios.post('/related', {id: this.props.id}),
+        axios.post(`${process.env.EXPRESS_SERVER}/card`, {id: this.props.id}),
+        axios.post(`${process.env.EXPRESS_SERVER}/card`, {id: this.props.id}),
       ]).then(axios.spread((data1, data2) => {
         this.setState({
           cur: data1.data,
