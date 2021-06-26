@@ -30,7 +30,6 @@ export default class Related extends Component {
   componentDidMount() {
     const myoutfits = JSON.parse(localStorage.getItem('myoutfits')|| '[]');
     this.setState({myoutfits});
-    log(this.props.id);
     axios.all([
       axios.post(`${process.env.EXPRESS_SERVER}/card`, {id: this.props.id}),
       axios.post(`${process.env.EXPRESS_SERVER}/related`, {id: this.props.id}),
@@ -74,9 +73,7 @@ export default class Related extends Component {
   }
 
   render() {
-    let {error, isLoading, items, cur, myoutfits} = this.state;
-    log(items)
-
+    const {error, isLoading, items, cur, myoutfits} = this.state
 
     if (error) {
       return <div>Error: {error} </div>;
