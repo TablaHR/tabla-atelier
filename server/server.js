@@ -3,7 +3,6 @@ const express = require('express');
 const app = express();
 const axios = require('axios');
 const port = process.env.EXPRESS_PORT;
-const Token = require('../config/config.js');
 const cors = require('cors');
 var multer = require('multer');
 var FormData = require('form-data');
