@@ -86,7 +86,6 @@ export default class Related extends Component {
         observer: true,
         allowTouchMove: false,
       };
-      log(items)
 
       return (
         <div>
