@@ -16,16 +16,21 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      id: 22122,
+      id: 22128,
     };
+    this.handleChange =this.handleChange.bind(this)
+  }
+  handleChange(e) {
+    this.setState({id:e})
+
   }
 
   render() {
-
+    log(this.state.id)
     return (
     <div>
       <Product />
-      <Related id={this.state.id}/>
+      <Related id={this.state.id} changeProduct={this.handleChange}/>
       <Ratings id={this.state.id}/>
     </div>);
 

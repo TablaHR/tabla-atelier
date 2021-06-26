@@ -30,6 +30,7 @@ export default class Related extends Component {
   componentDidMount() {
     const myoutfits = JSON.parse(localStorage.getItem('myoutfits')|| '[]');
     this.setState({myoutfits});
+    log(this.props.id);
     axios.all([
       axios.post('http://localhost:3000/card', {id: this.props.id}),
       axios.post('http://localhost:3000/related', {id: this.props.id}),
@@ -40,12 +41,25 @@ export default class Related extends Component {
         items: data2.data,
       });
     }));
+  }
+  componentDidUpdate(prevProps){
+    if (this.props.id!== prevProps.id){
+      axios.all([
+        axios.post('/card', {id: this.props.id}),
+        axios.post('/related', {id: this.props.id}),
+      ]).then(axios.spread((data1, data2) => {
+        this.setState({
+          cur: data1.data,
+          isLoading: false,
+          items: data2.data,
+        });
+      }));
 
 
-
-
+    }
 
   }
+
   removeMyOutfit(id) {
     const myoutfits = [...this.state.myoutfits.filter((item) => item !== id)];
     localStorage.setItem('myoutfits', JSON.stringify(myoutfits) );
@@ -60,8 +74,8 @@ export default class Related extends Component {
   }
 
   render() {
-    const {error, isLoading, items, cur, myoutfits} = this.state;
-
+    let {error, isLoading, items, cur, myoutfits} = this.state;
+    log(items)
 
 
     if (error) {
@@ -86,7 +100,8 @@ export default class Related extends Component {
                 <Card
                   itemId={itemId}
                   cur={cur}
-                  add={()=>this.addToMyoutfits(itemId)}
+                  changeProduct={this.props.changeProduct}
+                  add={null}
                   icon={<FaRegStar/>}/>
               </SwiperSlide>
             ))}
@@ -95,7 +110,7 @@ export default class Related extends Component {
           <Swiper {...params}>
             <SwiperSlide >
               <div onClick={()=>this.addToMyoutfits(cur.id)}>
-                <Card item_id={cur.id} cur={'blank'} add ={()=>{}}/>
+                <Card item_id={cur.id} cur={'blank'} add ={()=>{}} changeProduct={()=>{}}/>
               </div>
             </SwiperSlide>
             {myoutfits.map( (itemId, index) =>(
@@ -103,6 +118,7 @@ export default class Related extends Component {
                 <Card
                   itemId={itemId}
                   cur={cur}
+                  changeProduct={this.props.changeProduct}
                   add={()=>this.removeMyOutfit(itemId)}
                   icon={< CgCloseO />}/>
               </SwiperSlide>
