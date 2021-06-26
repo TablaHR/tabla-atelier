@@ -215,6 +215,43 @@ app.post('/addreview', (req, res) => {
 
 });
 
+app.post('/addhelpful', (req, res) => {
+
+  var configAddHelpful = {
+    method: 'PUT',
+    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/${req.body.review_id}/helpful`,
+    headers: {
+      'Authorization': Token.Git
+    }
+  };
+  axios(configAddHelpful)
+    .then(function (response) {
+      res.sendStatus(201);
+    })
+    .catch(function (response) {
+      res.sendStatus(500);
+    });
+
+});
+
+app.post('/addreport', (req, res) => {
+
+  var configAddReport = {
+    method: 'PUT',
+    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/${req.body.review_id}/report`,
+    headers: {
+      'Authorization': Token.Git
+    }
+  };
+  axios(configAddReport)
+    .then(function (response) {
+      res.sendStatus(201);
+    })
+    .catch(function (response) {
+      res.sendStatus(500);
+    });
+
+});
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)

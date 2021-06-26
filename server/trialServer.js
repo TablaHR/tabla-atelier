@@ -8,7 +8,7 @@ var cloudinary = require('cloudinary');
 const app = express();
 const axios = require('axios');
 const port = 3000;
-const token = require('./server.config.js');
+const token = require('./config.js');
 const cors = require('cors');
 
 var upload = multer({ dest: 'uploads/' });
@@ -37,7 +37,7 @@ app.post('/uploadreviewimage', upload.single('image'), function (req, res) {
 
 });
 
-app.post('/reviews', jsonParser, (req, res) => {
+app.post('/reviewsproductmeta', jsonParser, (req, res) => {
 
   var configGetReviewsById = {
     method: 'GET',
