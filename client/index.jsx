@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-// import Square_button from './Square_button/Square_button.jsx';
 import Stars from './components/shared/Stars.jsx';
 import ClickableStars from './components/shared/ClickableStars.jsx';
 import text, {CText, CTextDemoView} from './components/shared/CText.jsx';
