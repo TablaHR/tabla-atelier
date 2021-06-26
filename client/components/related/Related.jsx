@@ -31,13 +31,10 @@ export default class Related extends Component {
     const myoutfits = JSON.parse(localStorage.getItem('myoutfits')|| '[]');
     this.setState({myoutfits});
     axios.all([
-<<<<<<< HEAD
-      axios.post('/card', {id: this.props.id}),
-      axios.post('/related', {id: this.props.id}),
-=======
+
       axios.post(`${process.env.EXPRESS_SERVER}/card`, {id: this.props.id}),
       axios.post(`${process.env.EXPRESS_SERVER}/related`, {id: this.props.id}),
->>>>>>> main
+
     ]).then(axios.spread((data1, data2) => {
       this.setState({
         cur: data1.data,

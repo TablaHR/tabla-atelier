@@ -9,7 +9,7 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      id: 22122,
+      id: 23083,
       test: 0,
     };
     this.handleChange =this.handleChange.bind(this)
@@ -24,11 +24,7 @@ class App extends React.Component {
     <div>
       <button onClick={() => {this.setState({id: this.state.id + 1})}}>Rerender</button>
       <Product />
-<<<<<<< HEAD
-      <Related id={this.state.id}/>
-=======
       <Related id={this.state.id} changeProduct={this.handleChange}/>
->>>>>>> main
       <Ratings id={this.state.id}/>
     </div>);
   }
