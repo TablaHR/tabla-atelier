@@ -37,7 +37,7 @@ export default class Related extends Component {
       this.setState({
         cur: data1.data,
         isLoading: false,
-        items: data2.data,
+        items: [...new Set(data2.data)],
       });
     }));
   }
@@ -50,7 +50,7 @@ export default class Related extends Component {
         this.setState({
           cur: data1.data,
           isLoading: false,
-          items: data2.data,
+          items: [...new Set(data2.data)],
         });
       }));
 
@@ -86,7 +86,7 @@ export default class Related extends Component {
         observer: true,
         allowTouchMove: false,
       };
-
+      log(items)
 
       return (
         <div>
