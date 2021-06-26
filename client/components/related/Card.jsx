@@ -7,8 +7,6 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import DialogContent from '@material-ui/core/DialogContent';
 import Comparing from './Comparing.jsx';
 import './Card.css';
-
-
 import Stars from '../shared/Stars.jsx';
 
 function SimpleDialog(props) {
@@ -64,9 +62,15 @@ export default class Card extends Component {
   componentDidMount() {
     if (this.props.itemId !== undefined){
     axios.all([
+<<<<<<< HEAD
       axios.post('/card', {id: this.props.itemId}),
       axios.post('/review/meta', {id: this.props.itemId}),
       axios.post('/cardimage', {id: this.props.itemId}),
+=======
+      axios.post(`${process.env.EXPRESS_SERVER}/card`, {id: this.props.itemId}),
+      axios.post(`${process.env.EXPRESS_SERVER}/review/meta`, {id: this.props.itemId}),
+      axios.post(`${process.env.EXPRESS_SERVER}/cardimage`, {id: this.props.itemId}),
+>>>>>>> main
     ]).then(axios.spread((data1, data2, data3) => {
       const res = data3.data;
       let cur = res.results[0];
@@ -139,10 +143,20 @@ export default class Card extends Component {
       return (
 
         <div className='card' >
+<<<<<<< HEAD
           <img src = {image || './sample.jpeg'} onClick={this.handleClickOpen} ></img>
           <div className="icon" onClick={()=>{
             this.props.add();
           }}>{this.props.icon}</div>
+=======
+          <img src = {image} onClick={()=>this.props.changeProduct(this.props.itemId)}></img>
+          <div className="icon"
+          onClick={this.props.add||this.handleClickOpen}
+          // onClick={()=>{
+          //   this.props.add();
+          // }}
+          >{this.props.icon}</div>
+>>>>>>> main
           <div>{item.category}</div>
           <div>{item.name}</div>
           <div>{displayPrice}</div>

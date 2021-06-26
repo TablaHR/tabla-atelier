@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
 import ReactDOM from 'react-dom';
 import ReviewTile from './ReviewTile.jsx';
@@ -49,7 +50,7 @@ var reviewCharacteristics = {
 }
 
 var ReviewList = function (props) {
-
+    var reviewDisplayCounter = 0;
     return (
       <div className="review-list-and-sorting">
         <div className="review-sorting">
@@ -61,12 +62,26 @@ var ReviewList = function (props) {
         </select></span></h4>
           }
         </div>
+
+        <div className="review-search">
+          <form>
+            <input type="text" placeholder="Search reviews by keyword...." onChange={props.handleSearchReviews}></input>
+            <button type="reset">Submit</button>
+          </form>
+        </div>
+
         {(props.reviews.length > 0) &&
         props.reviews.map((review, index) => {
-          if ((index >= 0) && (index <= props.reviewListEnd)) {
+          if (
+            (index >= 0)
+            && (reviewDisplayCounter <= props.reviewListEnd)
+            && (props[`display${review.rating}Star`])
+            && (review.body.toLowerCase().includes(props.sortText.toLowerCase()))
+            ) {
+            reviewDisplayCounter++;
             return (
               <div className="review-list" key={review.review_id}>
-              <ReviewTile review={review} />
+              <ReviewTile review={review} handleHelpful={props.handleHelpful} handleReport={props.handleReport} />
               </div>
             );
           }

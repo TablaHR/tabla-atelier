@@ -285,3 +285,11 @@ img.review-photo {
 .characteristics.fit {
   grid-area: fit;
 }
+
+.review-link {
+  text-decoration: underline;
+  cursor: pointer;
+}
+.review-link:hover {
+  text-decoration-color: whitesmoke;
+}

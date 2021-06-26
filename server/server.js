@@ -1,8 +1,8 @@
+const dotenv = require('dotenv').config();
 const express = require('express');
 const app = express();
 const axios = require('axios');
-const port = 3000;
-const Token = require('./config/config.js');
+const port = process.env.EXPRESS_PORT;
 const cors = require('cors');
 var multer = require('multer');
 var FormData = require('form-data');
@@ -19,7 +19,7 @@ app.get('/active-product', (req, res) => {
   let config = {
       method: 'GET',
       url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products/' + 22122, // Force product id until logic is implemented
-      headers: { 'Authorization': Token.Git }
+      headers: { 'Authorization': process.env.GITHUB_TOKEN }
   };
 
   // Call to products API and return as res
@@ -37,7 +37,7 @@ app.get('/active-product-styles', (req, res) => {
   let config = {
       method: 'GET',
       url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products/' + 22122 + '/styles', // Force product id until logic is implemented
-      headers: { 'Authorization': Token.Git }
+      headers: { 'Authorization': process.env.GITHUB_TOKEN }
   };
 
   // Call to products API and return as res
@@ -57,7 +57,7 @@ app.post('/related', (req, res) => {
   let config = {
   method: 'GET',
   url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products/'+req.body.id+'/related',
-  headers: { 'Authorization': Token.Git } };
+  headers: { 'Authorization': process.env.GITHUB_TOKEN } };
 
   axios(config)
     .then(function (response) {
@@ -73,7 +73,7 @@ app.post('/card', (req, res) => {
   let config = {
   method: 'get',
   url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products/'+req.body.id,
-  headers: { 'Authorization': Token.Git } };
+  headers: { 'Authorization': process.env.GITHUB_TOKEN } };
 
   axios(config)
     .then(function (response) {
@@ -88,7 +88,7 @@ app.post('/cardimage', (req, res) => {
   let config = {
   method: 'get',
   url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products/'+req.body.id+'/styles',
-  headers: { 'Authorization': Token.Git} };
+  headers: { 'Authorization': process.env.GITHUB_TOKEN} };
 
   axios(config)
     .then(function (response) {
@@ -104,7 +104,7 @@ app.post('/review/meta', (req, res) => {
   let config = {
   method: 'get',
   url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/meta?product_id='+req.body.id,
-  headers: { 'Authorization': Token.Git }};
+  headers: { 'Authorization': process.env.GITHUB_TOKEN }};
   axios(config)
     .then(function (response) {
       res.send(response.data)
@@ -119,7 +119,7 @@ app.post('/reviews', (req, res) => {
   var config = {
     method: 'GET',
     url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews?product_id=${req.body.id}`,
-    headers: { 'Authorization': Token.Git }};
+    headers: { 'Authorization': process.env.GITHUB_TOKEN }};
 
   axios(config)
     .then(function (response) {
@@ -131,6 +131,12 @@ app.post('/reviews', (req, res) => {
 });
 
 app.post('/uploadreviewimage', upload.single('image'), function (req, res) {
+
+  cloudinary.config({
+    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+    api_key: process.env.CLOUDINARY_API,
+    api_secret: process.env.CLOUDINARY_SECRET
+  });
 
   cloudinary.v2.uploader.upload(req.file.path,
   function(error, result) {
@@ -149,21 +155,21 @@ app.post('/reviewsproductmeta', (req, res) => {
     method: 'GET',
     url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews?product_id=${req.body.id}`,
     headers: {
-      'Authorization': Token.Git
+      'Authorization': process.env.GITHUB_TOKEN
     }
   };
   var configGetProductById = {
     method: 'GET',
     url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products/${req.body.id}`,
     headers: {
-      'Authorization': Token.Git
+      'Authorization': process.env.GITHUB_TOKEN
     }
   };
   var configGetReviewsMetaById = {
     method: 'GET',
     url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/meta?product_id=${req.body.id}`,
     headers: {
-      'Authorization': Token.Git
+      'Authorization': process.env.GITHUB_TOKEN
     }
   };
 
@@ -198,7 +204,7 @@ app.post('/addreview', (req, res) => {
     url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews`,
     data: req.body,
     headers: {
-      'Authorization': Token.Git
+      'Authorization': process.env.GITHUB_TOKEN
     }
   };
 
@@ -216,6 +222,43 @@ app.post('/addreview', (req, res) => {
 
 });
 
+app.post('/addhelpful', (req, res) => {
+
+  var configAddHelpful = {
+    method: 'PUT',
+    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/${req.body.review_id}/helpful`,
+    headers: {
+      'Authorization': process.env.GITHUB_TOKEN
+    }
+  };
+  axios(configAddHelpful)
+    .then(function (response) {
+      res.sendStatus(201);
+    })
+    .catch(function (response) {
+      res.sendStatus(500);
+    });
+
+});
+
+app.post('/addreport', (req, res) => {
+
+  var configAddReport = {
+    method: 'PUT',
+    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/${req.body.review_id}/report`,
+    headers: {
+      'Authorization': process.env.GITHUB_TOKEN
+    }
+  };
+  axios(configAddReport)
+    .then(function (response) {
+      res.sendStatus(201);
+    })
+    .catch(function (response) {
+      res.sendStatus(500);
+    });
+
+});
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)

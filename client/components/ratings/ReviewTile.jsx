@@ -1,8 +1,10 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
 import Stars from '../shared/Stars.jsx';
 import ReviewPictures from './ReviewPictures.jsx';
 
 var ReviewTile = function (props) {
+  console.log(props.review);
   var titlewrap = false;
   var wrapCharacter = 0;
   var reviewDate = new Date(props.review.date);
@@ -42,7 +44,7 @@ var ReviewTile = function (props) {
           <p>{props.review.response}</p>
         </div>
       }
-      <p className="review-helpfulness">Helpful? Yes ({props.review.helpfulness})  |  Report</p>
+      <p className="review-helpfulness">Helpful? <span className={`review-link ${props.review.review_id}`} onClick={props.handleHelpful}>Yes</span>&nbsp;({props.review.helpfulness})&nbsp;&nbsp;|&nbsp;&nbsp;<span className={`review-link ${props.review.review_id}`} onClick={props.handleReport}>Report</span></p>
     </div>
   );
 }
