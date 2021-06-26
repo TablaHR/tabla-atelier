@@ -10,13 +10,12 @@ import Questions from './components/q&a/Questions.jsx';
 import Related from './components/related/Related.jsx';
 
 
-
-
 class App extends React.Component {
   constructor() {
     super();
     this.state = {
       id: 22122,
+      test: 0,
     };
   }
 
@@ -24,6 +23,7 @@ class App extends React.Component {
 
     return (
     <div>
+      <button onClick={() => {this.setState({id: this.state. + 1})}}>Rerender</button>
       <Product />
       <Related id={this.state.id}/>
       <Ratings id={this.state.id}/>

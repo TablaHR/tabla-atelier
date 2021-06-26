@@ -5,7 +5,7 @@ import StyleSelector from './StyleSelector.jsx'
 import './css/Product.css'
 import AddToCart from './AddToCart.jsx'
 import ImageGallery from './ImageGallery.jsx'
-import { getActiveProductInfo, getActiveProductStyles } from './serverHelper.js'
+import { getActiveProductInfo, getActiveProductStyles } from '../../serverHelpers/productServerHelper.js'
 
 class Product extends React.Component {
     constructor(props) {
