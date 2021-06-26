@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
 import Stars from '../shared/Stars.jsx';
 import ReviewPictures from './ReviewPictures.jsx';
