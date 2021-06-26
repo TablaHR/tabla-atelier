@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './ratings.css'
@@ -196,7 +197,7 @@ class Ratings extends React.Component {
     var idData = JSON.stringify({id: this.props.id});
 
     $.ajax({
-      url: 'http://localhost:3000/reviewsproductmeta',
+      url: `${process.env.EXPRESS_SERVER}/reviewsproductmeta`,
       type: 'POST',
       data: idData,
       success: successfulFetch,
@@ -230,7 +231,7 @@ class Ratings extends React.Component {
       multipart.append('image', reviewImage, event.target.files[0].name);
 
       $.ajax({
-        url: 'http://localhost:3000/uploadreviewimage',
+        url: `${process.env.EXPRESS_SERVER}/uploadreviewimage`,
         type: 'POST',
         data: multipart,
         success: this.updateImageState,
@@ -350,7 +351,8 @@ class Ratings extends React.Component {
     return (
       <div className="reviews">
         <ReviewGraphics ratings={this.state.ratings} recommended={this.state.recommended} characteristics={this.state.characteristics} display5Star={this.state.display5Star} display4Star={this.state.display4Star} display3Star={this.state.display3Star} display2Star={this.state.display2Star} display1Star={this.state.display1Star} starFilterOn={this.state.starFilterOn} handleStarFilterOn={this.handleStarFilterOn} handleStarFilterOff={this.handleStarFilterOff} />
-        <ReviewList reviews={this.state.reviews} sortType={this.state.sortType} reviewListEnd={this.state.reviewListEnd} moreReviews={this.moreReviews} changeSort={this.changeSort} productName={this.state.productName} addReviewRating={this.state.addReviewRating} changeAddReviewRating={this.changeAddReviewRating} addReviewToggleModal={this.addReviewToggleModal} addReviewHandleSubmit={this.addReviewHandleSubmit} handleRadioCharacteristics={this.handleRadioCharacteristics} characteristicsSize={this.state.characteristicsSize} characteristicsWidth={this.state.characteristicsWidth} characteristicsComfort={this.state.characteristicsComfort} characteristicsQuality={this.state.characteristicsQuality} characteristicsLength={this.state.characteristicsLength} characteristicsFit={this.state.characteristicsFit} characteristics={this.state.characteristics} handleRadioCharacteristics={this.handleRadioCharacteristics} handleReviewBodyText={this.handleReviewBodyText} reviewBodyTextCharacterCount={this.state.reviewBodyTextCharacterCount} handleFiles={this.handleFiles} numberImages={this.state.numberImages} handleHelpful={this.handleHelpful} handleReport={this.handleReport} sortText={this.state.sortText} display5Star={this.state.display5Star} display4Star={this.state.display4Star} display3Star={this.state.display3Star} display2Star={this.state.display2Star} display1Star={this.state.display1Star} handleSearchReviews={this.handleSearchReviews} />
+        <ReviewList reviews={this.state.reviews} sortType={this.state.sortType} reviewListEnd={this.state.reviewListEnd} moreReviews={this.moreReviews} changeSort={this.changeSort} productName={this.state.productName} addReviewRating={this.state.addReviewRating} changeAddReviewRating={this.changeAddReviewRating} addReviewToggleModal={this.addReviewToggleModal} addReviewHandleSubmit={this.addReviewHandleSubmit} handleRadioCharacteristics={this.handleRadioCharacteristics} characteristicsSize={this.state.characteristicsSize} characteristicsWidth={this.state.characteristicsWidth} characteristicsComfort={this.state.characteristicsComfort} characteristicsQuality={this.state.characteristicsQuality} characteristicsLength={this.state.characteristicsLength} characteristicsFit={this.state.characteristicsFit} characteristics={this.state.characteristics}
+        handleReviewBodyText={this.handleReviewBodyText} reviewBodyTextCharacterCount={this.state.reviewBodyTextCharacterCount} handleFiles={this.handleFiles} numberImages={this.state.numberImages} handleHelpful={this.handleHelpful} handleReport={this.handleReport} sortText={this.state.sortText} display5Star={this.state.display5Star} display4Star={this.state.display4Star} display3Star={this.state.display3Star} display2Star={this.state.display2Star} display1Star={this.state.display1Star} handleSearchReviews={this.handleSearchReviews} />
       </div>
     )
   }
