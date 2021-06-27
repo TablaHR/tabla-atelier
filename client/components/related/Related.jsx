@@ -21,14 +21,13 @@ export default class Related extends Component {
       cur: null,
       myoutfits: [],
       rememberMe: false,
-
     };
     this.addToMyoutfits=this.addToMyoutfits.bind(this);
     this.removeMyOutfit=this.removeMyOutfit.bind(this);
   }
 
   componentDidMount() {
-    const myoutfits = JSON.parse(localStorage.getItem('myoutfits')|| '[]');
+    const myoutfits = JSON.parse(localStorage.getItem('myoutfits') || '[]');
     this.setState({myoutfits});
     axios.all([
       axios.post(`${process.env.EXPRESS_SERVER}/card`, {id: this.props.id}),
@@ -53,8 +52,6 @@ export default class Related extends Component {
           items: data2.data,
         });
       }));
-
-
     }
 
   }
