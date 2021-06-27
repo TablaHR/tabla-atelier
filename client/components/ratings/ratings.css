@@ -1,25 +1,83 @@
 @import url('https://fonts.googleapis.com/css2?family=Potta+One&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap');
-.reviews{
-  display: grid;
-  grid-template-columns: 1fr 2fr;
-  grid-template-rows: 1.5fr 7fr 1.5fr;
-  grid-template-areas:
-    "star-average review-sorting"
-    "bars-sliders review-list"
-    ". review-controls"
+
+h3 {
+  font-weight: 100;
+  font-size: medium;
 }
-.review-list {
-  grid-area: review-list;
+
+p {
+  font-weight: 200;
+  font-size: medium;
+}
+
+.reviews{
+  font-family: Helvetica, sans-serif;
+  display: grid;
+  grid-template-columns: auto 18rem 4rem 36rem auto;
+  grid-template-rows: 0.1fr 0.25fr 6fr 0.5fr;
+  grid-template-rows: 5vh 10vh 75vh 10vh;
+  grid-template-areas:
+    "top top top top top"
+    "marginleft staraverage marginmiddle reviewsorting marginright"
+    "marginleft barssliders marginmiddle reviewlist marginright"
+    "marginleft . marginmiddle reviewcontrols marginright";
+}
+.review-margin-top {
+  grid-area: top;
+}
+.review-margin-left {
+  grid-area: marginleft;
+}
+.review-margin-middle {
+  grid-area: marginmiddle;
+}
+.review-margin-right {
+  grid-area: marginright;
+}
+.review-listings {
+  grid-area: reviewlist;
+  max-height: 100%;
+  overflow-y: auto;
 }
 .review-controls {
-  grid-area: review-controls;
+  grid-area: reviewcontrols;
+}
+.review-sorting-search {
+  grid-area: reviewsorting;
 }
 .star-average {
-  grid-area: star-average;
+  grid-area: staraverage;
+  display: grid;
+  grid-template-columns: 35% 65%;
+  grid-template-rows: 20% 3.5rem;
+  grid-template-areas:
+  "review-component-title review-component-title"
+  "startext stardisplay";
+}
+.component-title {
+  grid-area: review-component-title;
+  align-self: start;
+}
+.component-title h3 {
+  margin: 0px;
+}
+.star-average-text {
+  grid-area: startext;
+  align-self: start;
+  text-align: start;
+}
+.star-average-text p {
+  margin: 0px;
+  font-size: 3rem;
+  font-weight: 800;
+}
+.star-average-display {
+  grid-area: stardisplay;
+  align-self: start;
 }
 .bars-sliders {
-  grid-area: bars-sliders;
+  grid-area: barssliders;
 }
 .reviewtile {
   display: grid;
@@ -75,10 +133,135 @@ img.review-photo {
 .review-helpfulness {
   grid-area: helpfulness;
 }
+
+.character {
+  display: grid;
+  grid-template-columns: 6rem 6rem 6rem;
+  grid-template-rows: 3vh 4vh 3vh;
+  grid-template-areas:
+    "character-title character-title character-title"
+    "slider slider slider"
+    "min-slide-text center-slide-text max-slide-text";
+}
+.character-title {
+  grid-area: character-title;
+  align-self: center;
+}
+.sliders-container {
+  grid-area: slider;
+  align-self: center;
+}
+.min-slide-text {
+  grid-area: min-slide-text;
+  align-self: center;
+  text-align: center;
+  font-size: small;
+  font-weight: 400;
+}
+.center-slide-text {
+  grid-area: center-slide-text;
+  align-self: center;
+  text-align: center;
+  font-size: small;
+  font-weight: 400;
+}
+.max-slide-text {
+  grid-area: max-slide-text;
+  align-self: center;
+  text-align: center;
+  font-size: small;
+  font-weight: 400;
+}
+.bars-sliders {
+  display: grid;
+  grid-template-columns: 4rem 14rem;
+  grid-template-rows: 3vh 3vh 3vh 3vh 3vh 3vh auto auto auto auto auto auto auto;
+  grid-template-areas:
+    "recommend recommend"
+    "5link 5bars"
+    "4link 4bars"
+    "3link 3bars"
+    "2link 2bars"
+    "1link 1bars"
+    "starsorting starsorting"
+    "size size"
+    "width width"
+    "comfort comfort"
+    "quality quality"
+    "length length"
+    "fit fit"
+}
+.star-sorting {
+  grid-area: starsorting;
+  font-family: Helvetica, sans-serif;
+  font-weight: 200;
+}
+.size {
+  grid-area: size;
+}
+.width {
+  grid-area: width;
+}
+.comfort {
+  grid-area: comfort;
+}
+.quality {
+  grid-area: quality;
+}
+.length {
+  grid-area: length;
+}
+.fit {
+  grid-area: fit;
+}
+.recommend {
+  grid-area: recommend;
+  align-self: center;
+}
+#display5Star {
+  grid-area: 5link;
+  align-self: center;
+}
+#starbar5 {
+  grid-area: 5bars;
+  align-self: center;
+}
+#display4Star {
+  grid-area: 4link;
+  align-self: center;
+}
+#starbar4 {
+  grid-area: 4bars;
+  align-self: center;
+}
+#display3Star {
+  grid-area: 3link;
+  align-self: center;
+}
+#starbar3 {
+  grid-area: 3bars;
+  align-self: center;
+}
+#display2Star {
+  grid-area: 2link;
+  align-self: center;
+}
+#starbar2 {
+  grid-area: 2bars;
+  align-self: center;
+}
+#display1Star {
+  grid-area: 1link;
+  align-self: center;
+}
+#starbar1 {
+  grid-area: 1bars;
+  align-self: center;
+}
 .bars-container {
   display: grid;
-  grid-template-columns: 16rem;
-  grid-template-rows: .5rem;
+  grid-template-columns: 14.4rem;
+  grid-template-rows: .45rem;
 }
 .bars {
   background-color: gray;
@@ -93,21 +276,21 @@ img.review-photo {
 }
 .sliders-container {
   display: grid;
-  grid-template-columns: 6.5rem 0.25rem 6.5rem 0.25rem 6.5rem;
-  grid-template-rows: .5rem .25rem;
+  grid-template-columns: 5.85rem 0.225rem 5.85rem 0.225rem 5.85rem;
+  grid-template-rows: .45rem .225rem;
 }
 .slider1 {
-  background-color: gray;
+  background-color: orange;
   grid-column: 1 / 2;
   grid-row: 1 / 2;
 }
 .slider2 {
-  background-color: gray;
+  background-color: orange;
   grid-column: 3 / 4;
   grid-row: 1 / 2;
 }
 .slider3 {
-  background-color: gray;
+  background-color: orange;
   grid-column: 5 / 6;
   grid-row: 1 / 2;
 }

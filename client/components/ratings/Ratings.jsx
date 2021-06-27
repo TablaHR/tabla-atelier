@@ -350,9 +350,13 @@ class Ratings extends React.Component {
   render() {
     return (
       <div className="reviews">
+        <div className="review-margin-top"></div>
+        <div className="review-margin-left"></div>
         <ReviewGraphics ratings={this.state.ratings} recommended={this.state.recommended} characteristics={this.state.characteristics} display5Star={this.state.display5Star} display4Star={this.state.display4Star} display3Star={this.state.display3Star} display2Star={this.state.display2Star} display1Star={this.state.display1Star} starFilterOn={this.state.starFilterOn} handleStarFilterOn={this.handleStarFilterOn} handleStarFilterOff={this.handleStarFilterOff} />
+        <div className="review-margin-middle"></div>
         <ReviewList reviews={this.state.reviews} sortType={this.state.sortType} reviewListEnd={this.state.reviewListEnd} moreReviews={this.moreReviews} changeSort={this.changeSort} productName={this.state.productName} addReviewRating={this.state.addReviewRating} changeAddReviewRating={this.changeAddReviewRating} addReviewToggleModal={this.addReviewToggleModal} addReviewHandleSubmit={this.addReviewHandleSubmit} handleRadioCharacteristics={this.handleRadioCharacteristics} characteristicsSize={this.state.characteristicsSize} characteristicsWidth={this.state.characteristicsWidth} characteristicsComfort={this.state.characteristicsComfort} characteristicsQuality={this.state.characteristicsQuality} characteristicsLength={this.state.characteristicsLength} characteristicsFit={this.state.characteristicsFit} characteristics={this.state.characteristics}
         handleReviewBodyText={this.handleReviewBodyText} reviewBodyTextCharacterCount={this.state.reviewBodyTextCharacterCount} handleFiles={this.handleFiles} numberImages={this.state.numberImages} handleHelpful={this.handleHelpful} handleReport={this.handleReport} sortText={this.state.sortText} display5Star={this.state.display5Star} display4Star={this.state.display4Star} display3Star={this.state.display3Star} display2Star={this.state.display2Star} display1Star={this.state.display1Star} handleSearchReviews={this.handleSearchReviews} />
+        <div className="review-margin-right"></div>
       </div>
     )
   }

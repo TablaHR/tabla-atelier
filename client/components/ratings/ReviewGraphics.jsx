@@ -1,10 +1,11 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
 import Stars from '../shared/Stars.jsx';
 import Bars from './Bars.jsx';
 import Sliders from './Sliders.jsx';
 
 var ReviewGraphics = function (props) {
-  console.log(props);
+
   var ratingsBreakdown = () => {
     var totalRatings = 0;
     var numberRatings = 0;
@@ -43,23 +44,44 @@ var ReviewGraphics = function (props) {
   };
 
   return (
-    <div className="review-graphics">
+    <React.Fragment>
       <div className="star-average">
-        <h3>Ratings &#38; Reviews</h3>
-        <h4>{ratingsStats.averageRatings}</h4>
-        <Stars rating={ratingsStats.averageRatings} />
+        <div className="component-title">
+        <h3>RATINGS &#38; REVIEWS</h3>
+        </div>
+        <div className="star-average-text">
+          <p>{ratingsStats.averageRatings.toFixed(2)}</p>
+        </div>
+        <div className="star-average-display">
+          <Stars rating={ratingsStats.averageRatings} />
+        </div>
       </div>
       <div className="bars-sliders">
-        <div className="review-bars">
+
           <div className="recommend">
-            <h3>{recommended()}% of reviews recommend this product</h3>
+            <p>{(recommended()).toFixed()}% of reviews recommend this product</p>
           </div>
-          <span className="review-link" onClick={props.handleStarFilterOn} id="display5Star">5 stars</span><Bars percentage={(ratingsStats[5] / ratingsStats.numberRatings) * 100} />
-          <span className="review-link" onClick={props.handleStarFilterOn} id="display4Star">4 stars</span><Bars percentage={(ratingsStats[4] / ratingsStats.numberRatings) * 100} />
-          <span className="review-link" onClick={props.handleStarFilterOn} id="display3Star">3 stars</span><Bars percentage={(ratingsStats[3] / ratingsStats.numberRatings) * 100} />
-          <span className="review-link" onClick={props.handleStarFilterOn} id="display2Star">2 stars</span><Bars percentage={(ratingsStats[2] / ratingsStats.numberRatings) * 100} />
-          <span className="review-link" onClick={props.handleStarFilterOn} id="display1Star">1 star</span><Bars percentage={(ratingsStats[1] / ratingsStats.numberRatings) * 100} />
-        </div>
+          <p className="review-link" onClick={props.handleStarFilterOn} id="display5Star">5 stars</p>
+          <div id="starbar5">
+            <Bars percentage={(ratingsStats[5] / ratingsStats.numberRatings) * 100} />
+          </div>
+          <p className="review-link" onClick={props.handleStarFilterOn} id="display4Star">4 stars</p>
+          <div id="starbar4">
+          <Bars percentage={(ratingsStats[4] / ratingsStats.numberRatings) * 100} />
+          </div>
+          <p className="review-link" onClick={props.handleStarFilterOn} id="display3Star">3 stars</p>
+          <div id="starbar3">
+          <Bars percentage={(ratingsStats[3] / ratingsStats.numberRatings) * 100} />
+          </div>
+          <p className="review-link" onClick={props.handleStarFilterOn} id="display2Star">2 stars</p>
+          <div id="starbar2">
+          <Bars percentage={(ratingsStats[2] / ratingsStats.numberRatings) * 100} />
+          </div>
+          <p className="review-link" onClick={props.handleStarFilterOn} id="display1Star">1 star</p>
+          <div id="starbar1">
+          <Bars percentage={(ratingsStats[1] / ratingsStats.numberRatings) * 100} />
+          </div>
+
         <div className="star-sorting">
           {(props.starFilterOn) &&
             <div>
@@ -93,64 +115,70 @@ var ReviewGraphics = function (props) {
             </div>
           }
         </div>
-        <div className="review-sliders">
+
+
           {(props.characteristics.Size !== undefined) &&
-            <div>
-            <span>Size</span>
+            <div className="character size">
+            <p className="character-title">Size</p>
             <Sliders rating={props.characteristics.Size.value} />
-            <span className="min-slide-text">Too Small</span>
-            <span className="center-slide-text">Perfect</span>
-            <span className="max-slide-text">Too Wide</span>
+            <p className="min-slide-text">Too Small</p>
+            <p className="center-slide-text">Perfect</p>
+            <p className="max-slide-text">Too Wide</p>
             </div>
           }
+
           {(props.characteristics.Width !== undefined) &&
-            <div>
-            <span>Width</span>
+            <div className="character width">
+            <p className="character-title">Width</p>
             <Sliders rating={props.characteristics.Width.value} />
-            <span className="min-slide-text">Too Narrow</span>
-            <span className="center-slide-text">Perfect</span>
-            <span className="max-slide-text">Too Wide</span>
+            <p className="min-slide-text">Too Narrow</p>
+            <p className="center-slide-text">Perfect</p>
+            <p className="max-slide-text">Too Wide</p>
             </div>
           }
+
           {(props.characteristics.Comfort !== undefined) &&
-            <div>
-            <span>Comfort</span>
+            <div className="character comfort">
+            <p className="character-title">Comfort</p>
             <Sliders rating={props.characteristics.Comfort.value} />
-            <span className="min-slide-text">Uncomfortable</span>
-            <span className="center-slide-text">Ok</span>
-            <span className="max-slide-text">Perfect</span>
+            <p className="min-slide-text">Uncomfortable</p>
+            <p className="center-slide-text">Ok</p>
+            <p className="max-slide-text">Perfect</p>
             </div>
           }
+
           {(props.characteristics.Quality !== undefined) &&
-            <div>
-            <span>Quality</span>
+            <div className="character quality">
+            <p className="character-title">Quality</p>
             <Sliders rating={props.characteristics.Quality.value} />
-            <span className="min-slide-text">Poor</span>
-            <span className="center-slide-text">As Expected</span>
-            <span className="max-slide-text">Perfect</span>
+            <p className="min-slide-text">Poor</p>
+            <p className="center-slide-text">As Expected</p>
+            <p className="max-slide-text">Perfect</p>
             </div>
           }
+
           {(props.characteristics.Length !== undefined) &&
-            <div>
-            <span>Length</span>
+            <div className="character length">
+            <p className="character-title">Length</p>
             <Sliders rating={props.characteristics.Length.value} />
-            <span className="min-slide-text">Short</span>
-            <span className="center-slide-text">Perfect</span>
-            <span className="max-slide-text">Long</span>
+            <p className="min-slide-text">Short</p>
+            <p className="center-slide-text">Perfect</p>
+            <p className="max-slide-text">Long</p>
             </div>
           }
+
           {(props.characteristics.Fit !== undefined) &&
-            <div>
-            <span>Fit</span>
+            <div className="character fit">
+            <p className="character-title">Fit</p>
             <Sliders rating={props.characteristics.Fit.value} />
-            <span className="min-slide-text">Tight</span>
-            <span className="center-slide-text">Perfect</span>
-            <span className="max-slide-text">Long</span>
+            <p className="min-slide-text">Tight</p>
+            <p className="center-slide-text">Perfect</p>
+            <p className="max-slide-text">Long</p>
             </div>
           }
-        </div>
+
       </div>
-    </div>
+    </React.Fragment>
   );
 }
 

@@ -52,23 +52,26 @@ var reviewCharacteristics = {
 var ReviewList = function (props) {
     var reviewDisplayCounter = 0;
     return (
-      <div className="review-list-and-sorting">
-        <div className="review-sorting">
-          {(props.reviews.length >= 1) &&
-          <h4>{props.reviews.length} review{(props.reviews.length > 1) && <span>s</span>}, sorted by <span className="review-sort-type"><select name="sortType" onChange={props.changeSort}>
-          <option value="relevance" defaultValue>relevance</option>
-          <option value="date">date</option>
-          <option value="helpfulness">helpfulness</option>
-        </select></span></h4>
-          }
-        </div>
+      <React.Fragment>
+        <div className="review-sorting-search">
+          <div className="review-sorting">
+            {(props.reviews.length >= 1) &&
+            <h4>{props.reviews.length} review{(props.reviews.length > 1) && <span>s</span>}, sorted by <span className="review-sort-type"><select name="sortType" onChange={props.changeSort}>
+            <option value="relevance" defaultValue>relevance</option>
+            <option value="date">date</option>
+            <option value="helpfulness">helpfulness</option>
+          </select></span></h4>
+            }
+          </div>
 
-        <div className="review-search">
-          <form>
-            <input type="text" placeholder="Search reviews by keyword...." onChange={props.handleSearchReviews}></input>
-            <button type="reset">Submit</button>
-          </form>
+          <div className="review-search">
+            <form>
+              <input type="text" placeholder="Search reviews by keyword...." onChange={props.handleSearchReviews}></input>
+              <button type="reset">Submit</button>
+            </form>
+          </div>
         </div>
+        <div className="review-listings">
 
         {(props.reviews.length > 0) &&
         props.reviews.map((review, index) => {
@@ -87,6 +90,7 @@ var ReviewList = function (props) {
           }
         })
         }
+        </div>
         <div className="review-controls">
           <button onClick={props.moreReviews}>MORE REVIEWS</button>
 
@@ -362,7 +366,7 @@ var ReviewList = function (props) {
         <button id="open-button" className="open-button" onClick={props.addReviewToggleModal}>ADD A REVIEW +</button>
 
         </div>
-      </div>
+      </React.Fragment>
     );
 
 }
