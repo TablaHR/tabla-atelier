@@ -2,7 +2,7 @@
 import React from 'react';
 
 var ReviewPictures = function (props) {
-  console.log(props.photos);
+
   var pictures = props.photos.map((photo) => {
       return (
         <img className="review-photo"

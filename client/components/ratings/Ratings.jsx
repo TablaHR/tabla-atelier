@@ -85,7 +85,6 @@ class Ratings extends React.Component {
   addReviewHandleSubmit(event) {
     this.addReviewToggleModal();
     event.preventDefault();
-    console.log(event);
     var reviewForm = {};
     reviewForm['product_id'] = this.props.id;
     reviewForm['rating'] = this.state.addReviewRating;
@@ -118,8 +117,6 @@ class Ratings extends React.Component {
     }
 
     reviewForm['characteristics'] = characteristicsObj;
-
-    console.log(reviewForm);
 
     var sendReviewForm = JSON.stringify(reviewForm);
     var item = reviewForm['product_id'].toString() + 'review';
@@ -261,7 +258,7 @@ class Ratings extends React.Component {
           }
         })
         .fail(function () {
-          console.log('AJAX POST request for add review image has failed.');
+          log('AJAX POST request for add review image has failed.');
         });
     }
   }
@@ -279,7 +276,6 @@ class Ratings extends React.Component {
 
   handleHelpful(event) {
     event.preventDefault();
-    console.log(event);
     var item = event.target.classList[1] + 'helpful';
     let helpful = localStorage.getItem(item);
 
@@ -349,7 +345,6 @@ class Ratings extends React.Component {
   }
 
   handleReviewPhotoClick(url) {
-    console.log(url);
     this.setState({photoclickedURL: url});
     var modal = document.querySelector("#review-photos-modal");
     var modalOverlay = document.querySelector("#review-photos-modal-overlay");
