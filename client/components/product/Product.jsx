@@ -24,7 +24,7 @@ class Product extends React.Component {
         });
     }
 
-    componentDidMount() {
+    updateComponent() {
         getActiveProductInfo().then((data) => {
             this.setState({activeProduct: data});
         });
@@ -34,6 +34,15 @@ class Product extends React.Component {
                 selectedStyle: data.results[0]
             });
         })
+    }
+
+    componentDidMount() {
+        this.updateComponent();
+    }
+
+    getSnapshotBeforeUpdate() {
+        this.updateComponent();
+        return null;
     }
 
     render() {

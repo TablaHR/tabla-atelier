@@ -21,14 +21,13 @@ export default class Related extends Component {
       cur: null,
       myoutfits: [],
       rememberMe: false,
-
     };
     this.addToMyoutfits=this.addToMyoutfits.bind(this);
     this.removeMyOutfit=this.removeMyOutfit.bind(this);
   }
 
   componentDidMount() {
-    const myoutfits = JSON.parse(localStorage.getItem('myoutfits')|| '[]');
+    const myoutfits = JSON.parse(localStorage.getItem('myoutfits') || '[]');
     this.setState({myoutfits});
     axios.all([
 
@@ -58,6 +57,7 @@ export default class Related extends Component {
           isLoading: false,
           items: [...new Set(data2.data)],
         });
+<<<<<<< HEAD
       })).catch( (error) =>{
         alert(error);
         this.setState({error:"Refresh later"})
@@ -65,6 +65,9 @@ export default class Related extends Component {
         {});
 
 
+=======
+      }));
+>>>>>>> main
     }
 
   }

@@ -39,7 +39,6 @@ class AddToCart extends React.Component {
     }
 
     getQuantity() {
-        log("ran");
         if (this.state.selectedSizeIdx) {
             var idx = 0;
             for (let [k, v] of Object.entries(this.props.product.skus)) {
