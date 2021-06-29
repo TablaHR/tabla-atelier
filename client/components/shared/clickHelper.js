@@ -6,6 +6,7 @@ const clickHelper = (func)=>{
 
     return (e)=>{
       log(e.nativeEvent.path)
+      log(e.nativeEvent.path.splice(-7)[0])
       log('Time:',d.toLocaleTimeString())
       func()
     }
