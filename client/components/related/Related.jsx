@@ -57,7 +57,6 @@ export default class Related extends Component {
           isLoading: false,
           items: [...new Set(data2.data)],
         });
-<<<<<<< HEAD
       })).catch( (error) =>{
         alert(error);
         this.setState({error:"Refresh later"})
@@ -65,9 +64,6 @@ export default class Related extends Component {
         {});
 
 
-=======
-      }));
->>>>>>> main
     }
 
   }
@@ -89,12 +85,12 @@ export default class Related extends Component {
     const {error, isLoading, items, cur, myoutfits} = this.state
 
     if (error) {
-      return <div>
+      return <div id='Related' >
         <h1 style={{color: 'gray'}}>RELATED PRODUCTS </h1>
         <div>Error: {error}</div>
          </div>;
     } else if (isLoading) {
-      return <div>Loading...</div>;
+      return <div id='Related' >Loading...</div>;
     } else {
       const params = {
         slidesPerView: 4.5,
@@ -104,7 +100,7 @@ export default class Related extends Component {
       };
 
       return (
-        <div>
+        <div id='Related' >
           <h1 style={{color: 'gray'}}>RELATED PRODUCTS {this.props.id}</h1>
           <Swiper {...params}>
             {items.map((itemId) =>(
