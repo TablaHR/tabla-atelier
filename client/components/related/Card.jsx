@@ -101,12 +101,9 @@ export default class Card extends Component {
     var d= new Date();
     if (this.props.cur === 'blank') {
       return <div className='card' >
-      <img alt={'blank'} src = {"./sample.jpeg"} onClick={clickHelper(()=>this.props.add(this.props.item_id))
-        // // log(e.nativeEvent.path)
-        // // log('related')
-        // // log('Time:',d.toLocaleTimeString())
-        // this.props.add(this.props.item_id)}
-        } ></img>
+      <img alt={'blank'} src = {"./sample.jpeg"}
+        onClick={clickHelper(()=>this.props.add(this.props.item_id))
+      } ></img>
       <div>Add current product!</div>
     </div>
 
@@ -115,7 +112,6 @@ export default class Card extends Component {
     const {error, isLoading, item, image, price, discountPrice, display, ratings} = this.state;
     const cur = this.props.cur;
     const clickIcon = this.props.add||this.handleClickOpen;
-    var d = new Date();
     let rating = 0;
     let Star;
     if (Object.keys(ratings).length !== 0) {
@@ -154,7 +150,6 @@ export default class Card extends Component {
               this.props.changeProduct(this.props.itemId))} ></img>
           <div className="icon"
           onClick={clickHelper(clickIcon)}
-
           >{this.props.icon}</div>
           <div>{item.category}</div>
           <div>{item.name}</div>
