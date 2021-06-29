@@ -22,7 +22,6 @@ var ReviewGraphics = function (props) {
     stars.totalRatings= totalRatings;
     stars.numberRatings = numberRatings;
     stars.averageRatings = totalRatings / numberRatings;
-    console.log(stars);
     return stars;
   };
 

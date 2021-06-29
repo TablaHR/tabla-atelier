@@ -84,7 +84,7 @@ var ReviewList = function (props) {
             reviewDisplayCounter++;
             return (
               <div className="review-list" key={review.review_id}>
-              <ReviewTile review={review} handleHelpful={props.handleHelpful} handleReport={props.handleReport} />
+              <ReviewTile review={review} handleHelpful={props.handleHelpful} handleReport={props.handleReport} handleReviewPhotoClick={props.handleReviewPhotoClick} photoclickedURL={props.photoclickedURL} />
               </div>
             );
           }
@@ -100,7 +100,7 @@ var ReviewList = function (props) {
         <div className="modal closed" id="modal">
           <button className="close-button" id="close-button" onClick={props.addReviewToggleModal}>&times;</button>
         <div className="modal-body">
-          <h1>Modal Example</h1>
+          <h1>Write Your Review</h1>
           <h2>About the {props.productName}</h2>
 
           <div onClick={props.changeAddReviewRating}>

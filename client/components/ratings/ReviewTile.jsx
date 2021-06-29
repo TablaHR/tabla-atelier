@@ -4,7 +4,6 @@ import Stars from '../shared/Stars.jsx';
 import ReviewPictures from './ReviewPictures.jsx';
 
 var ReviewTile = function (props) {
-  console.log(props.review);
   var titlewrap = false;
   var wrapCharacter = 0;
   var reviewDate = new Date(props.review.date);
@@ -33,7 +32,7 @@ var ReviewTile = function (props) {
       <p className="review-userdate">{props.review.reviewer_name}, {reviewDate.toLocaleDateString('en-US', dateOptions)}</p>
       <p className="review-body">{props.review.body}</p>
       {props.review.photos.length > 0 &&
-        <ReviewPictures photos={props.review.photos} />
+        <ReviewPictures photos={props.review.photos} handleReviewPhotoClick={props.handleReviewPhotoClick} photoclickedURL={props.photoclickedURL}/>
       }
       {props.review.recommend === true &&
         <p className="review-recommend">&#10003; I recommend this product</p>
