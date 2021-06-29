@@ -89,7 +89,11 @@ export default class Card extends Component {
           break;
         }
       }
-    }));
+    })).catch(function (error) {
+      alert(error);
+      this.setState({error:"Refresh latter"})
+      }).then(function()
+      {});
     }
   }
   render() {
@@ -120,7 +124,7 @@ export default class Card extends Component {
       Star = <div></div>;
     }
 
-    if (error) {
+    if (error !== null) {
       return <div>Error: {error} </div>;
     } else if (isLoading) {
       return <div>Loading...</div>;

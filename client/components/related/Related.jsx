@@ -41,7 +41,11 @@ export default class Related extends Component {
         isLoading: false,
         items: [...new Set(data2.data)],
       });
-    }));
+    })).catch(function (error) {
+      alert(error);
+      this.setState({error:"Refresh latter"})
+      }).then(function()
+      {});
   }
   componentDidUpdate(prevProps){
     if (this.props.id!== prevProps.id){
@@ -54,7 +58,11 @@ export default class Related extends Component {
           isLoading: false,
           items: [...new Set(data2.data)],
         });
-      }));
+      })).catch(function (error) {
+        alert(error);
+        this.setState({error:"Refresh latter"})
+        }).then(function()
+        {});
 
 
     }
