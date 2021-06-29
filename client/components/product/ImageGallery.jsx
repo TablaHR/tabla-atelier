@@ -13,8 +13,8 @@ class ImageGallery extends React.Component {
     render() {
         return(
             <div className="img-gallery">
-                <img className="featured-image" src={this.props.product ?   this.props.product.photos[0].url:'./sample.jpeg'}></img>
-                <h1 className="expand-button">+</h1>
+                <img className="featured-image" src={this.props.product ? this.props.product.photos[0].url:'./sample.jpeg'}></img>
+                <h1 className="expand-button" onClick={this.props.screenToggle}>+</h1>
             </div>
         )
     }
