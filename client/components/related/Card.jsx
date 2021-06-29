@@ -89,9 +89,9 @@ export default class Card extends Component {
           break;
         }
       }
-    })).catch(function (error) {
+    })).catch((error)=>{
       alert(error);
-      this.setState({error:"Refresh latter"})
+      this.setState({error:"Refresh later"})
       }).then(function()
       {});
     }
@@ -107,6 +107,8 @@ export default class Card extends Component {
     // eslint-disable-next-line max-len
     const {error, isLoading, item, image, price, discountPrice, display, ratings} = this.state;
     const cur = this.props.cur;
+    const clickIcon = this.props.add||this.handleClickOpen;
+    var d = new Date();
     let rating = 0;
     let Star;
     if (Object.keys(ratings).length !== 0) {
@@ -143,7 +145,11 @@ export default class Card extends Component {
         <div className='card' >
           <img alt={item.name} src = {image} onClick={()=>this.props.changeProduct(this.props.itemId)}></img>
           <div className="icon"
-          onClick={this.props.add||this.handleClickOpen}
+          onClick={(e)=>{
+            log(e)
+            log('related')
+            log('Time:',d.toLocaleTimeString())
+            clickIcon()}}
           // onClick={()=>{
           //   this.props.add();
           // }}

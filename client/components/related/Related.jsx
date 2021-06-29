@@ -41,9 +41,9 @@ export default class Related extends Component {
         isLoading: false,
         items: [...new Set(data2.data)],
       });
-    })).catch(function (error) {
+    })).catch((error) =>{
       alert(error);
-      this.setState({error:"Refresh latter"})
+      this.setState({error:"Refresh later"})
       }).then(function()
       {});
   }
@@ -58,9 +58,9 @@ export default class Related extends Component {
           isLoading: false,
           items: [...new Set(data2.data)],
         });
-      })).catch(function (error) {
+      })).catch( (error) =>{
         alert(error);
-        this.setState({error:"Refresh latter"})
+        this.setState({error:"Refresh later"})
         }).then(function()
         {});
 
@@ -86,7 +86,10 @@ export default class Related extends Component {
     const {error, isLoading, items, cur, myoutfits} = this.state
 
     if (error) {
-      return <div>Error: {error} </div>;
+      return <div>
+        <h1 style={{color: 'gray'}}>RELATED PRODUCTS </h1>
+        <div>Error: {error}</div>
+         </div>;
     } else if (isLoading) {
       return <div>Loading...</div>;
     } else {
