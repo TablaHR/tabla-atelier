@@ -97,9 +97,14 @@ export default class Card extends Component {
     }
   }
   render() {
+    var d= new Date();
     if (this.props.cur === 'blank') {
       return <div className='card' >
-      <img alt={'blank'} src = {"./sample.jpeg"} onClick={()=>{this.props.add(this.props.item_id)}} ></img>
+      <img alt={'blank'} src = {"./sample.jpeg"} onClick={(e)=>{
+        log(e.nativeEvent.path)
+        log('related')
+        log('Time:',d.toLocaleTimeString())
+        this.props.add(this.props.item_id)}} ></img>
       <div>Add current product!</div>
     </div>
 
@@ -143,10 +148,14 @@ export default class Card extends Component {
       return (
 
         <div className='card' >
-          <img alt={item.name} src = {image} onClick={()=>this.props.changeProduct(this.props.itemId)}></img>
+          <img alt={item.name} src = {image} onClick={(e)=>
+            {log(e.nativeEvent.path)
+              log('related')
+              log('Time:',d.toLocaleTimeString())
+              this.props.changeProduct(this.props.itemId)}}></img>
           <div className="icon"
           onClick={(e)=>{
-            log(e)
+            log(e.nativeEvent.path)
             log('related')
             log('Time:',d.toLocaleTimeString())
             clickIcon()}}
