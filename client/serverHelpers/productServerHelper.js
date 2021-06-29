@@ -25,7 +25,13 @@ const getActiveProductStyles = function () {
             });
     });
 }
+
+const updateActiveProduct = function (id) {
+    return axios.post(`${process.env.EXPRESS_SERVER}/change-active-product`, {id});
+}
+
 module.exports = {
+    updateActiveProduct: updateActiveProduct,
     getActiveProductInfo: getActiveProductInfo,
     getActiveProductStyles: getActiveProductStyles,
 }

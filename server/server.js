@@ -13,11 +13,13 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }))
 var upload = multer({ dest: 'uploads/' });
 
+var activeProduct = 22124;
+
 app.get('/active-product', (req, res) => {
 
   let config = {
       method: 'GET',
-      url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products/' + 22122, // Force product id until logic is implemented
+      url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products/' + activeProduct, // Force product id until logic is implemented
       headers: { 'Authorization': process.env.GITHUB_TOKEN }
   };
 
@@ -35,7 +37,7 @@ app.get('/active-product-styles', (req, res) => {
 
   let config = {
       method: 'GET',
-      url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products/' + 22122 + '/styles', // Force product id until logic is implemented
+      url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products/' + activeProduct + '/styles', // Force product id until logic is implemented
       headers: { 'Authorization': process.env.GITHUB_TOKEN }
   };
 
@@ -47,6 +49,11 @@ app.get('/active-product-styles', (req, res) => {
       .catch(function (error) {
           console.log(error);
       });
+});
+
+app.post('/change-active-product', (req, res) => {
+  activeProduct = req.body.id;
+  res.sendStatus(200)
 });
 
 
