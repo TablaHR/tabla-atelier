@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "react-dev": "webpack --mode development --watch",
+    "react-prod": "webpack --mode production --watch",
     "start": "nodemon server/server.js",
-    "test": "jest --coverage",
-    "trial": "nodemon server/trialServer.js"
+    "test": "jest --coverage"
   },
   "repository": {
     "type": "git",
