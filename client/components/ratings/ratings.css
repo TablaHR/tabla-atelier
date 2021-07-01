@@ -16,12 +16,12 @@ p {
   display: grid;
   grid-template-columns: auto 18rem 4rem 36rem auto;
   grid-template-rows: 0.1fr 0.25fr 6fr 0.5fr;
-  grid-template-rows: 5vh 10vh 75vh 10vh;
+  grid-template-rows: 3vh 12vh 75vh 10vh;
   grid-template-areas:
     "top top top top top"
     "marginleft staraverage marginmiddle reviewsorting marginright"
     "marginleft barssliders marginmiddle reviewlist marginright"
-    "marginleft . marginmiddle reviewcontrols marginright";
+    "marginleft barssliders marginmiddle reviewcontrols marginright";
 }
 .review-margin-top {
   grid-area: top;
@@ -37,14 +37,25 @@ p {
 }
 .review-listings {
   grid-area: reviewlist;
-  max-height: 100%;
+  max-height: 75vh;
   overflow-y: auto;
 }
 .review-controls {
   grid-area: reviewcontrols;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 10vh;
+  column-gap: 1rem;
+  grid-template-areas:
+    "review-more-reviews open-button"
 }
-.review-sorting-search {
-  grid-area: reviewsorting;
+.review-more-reviews {
+    grid-area: review-more-reviews;
+    align-self: center;
+}
+.open-button {
+    grid-area: open-button;
+    align-self: center;
 }
 .star-average {
   grid-area: staraverage;
@@ -79,11 +90,40 @@ p {
 .bars-sliders {
   grid-area: barssliders;
 }
+.review-sorting-search {
+  grid-area: reviewsorting;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 4vh 8vh;
+  grid-template-areas:
+    "review-sorting"
+    "review-search";
+}
+.review-sorting {
+  grid-area: review-sorting;
+  align-self: center;
+}
+.review-search {
+  grid-area: review-search;
+  align-self: center;
+  display: grid;
+  grid-template-columns: 4fr 1fr;
+  grid-template-rows: 1fr;
+  column-gap: 1rem;
+  grid-template-areas:
+  "review-search-text review-search-button";
+}
+.review-search-text {
+  grid-area: review-search-text;
+}
+.review-search-button {
+  grid-area: review-search-button;
+}
 .reviewtile {
   border-bottom: 0.1rem solid black;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr auto auto auto auto auto 1fr;
+  grid-template-rows: 3vh 3vh auto auto auto auto auto 1fr;
   grid-template-areas:
     "stars . userdate userdate"
     "title title title title"
@@ -96,6 +136,7 @@ p {
 }
 .review-title {
   grid-area: title;
+  align-self: center;
 }
 .review-stars {
   grid-area: stars;
@@ -104,16 +145,19 @@ p {
 .review-userdate {
   grid-area: userdate;
   text-align: right;
-  justify-self: end;
+  align-self: center;
 }
 .review-titlewrap {
   grid-area: titlewrap;
+  align-self: center;
 }
 .review-body {
   grid-area: body;
+  align-self: center;
 }
 .review-photos {
   grid-area: photos;
+  align-self: center;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -127,12 +171,19 @@ img.review-photo {
 }
 .review-recommend {
   grid-area: recommend;
+  align-self: center;
 }
 .review-response {
   grid-area: response;
+  align-self: start;
+  border: 0.5rem solid white;
+  padding: 0.5rem;
+  background-color: lightgrey;
+
 }
 .review-helpfulness {
   grid-area: helpfulness;
+  align-self: center;
 }
 
 .character {
