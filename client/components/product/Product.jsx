@@ -5,7 +5,7 @@ import StyleSelector from './StyleSelector.jsx'
 import './css/Product.css'
 import AddToCart from './AddToCart.jsx'
 import ImageGallery from './ImageGallery.jsx'
-import { getActiveProductInfo, getActiveProductStyles } from './serverHelper.js'
+import { getActiveProductInfo, getActiveProductStyles } from '../../serverHelpers/productServerHelper.js'
 
 class Product extends React.Component {
     constructor(props) {
@@ -24,7 +24,7 @@ class Product extends React.Component {
         });
     }
 
-    componentDidMount() {
+    updateComponent() {
         getActiveProductInfo().then((data) => {
             this.setState({activeProduct: data});
         });
@@ -34,6 +34,15 @@ class Product extends React.Component {
                 selectedStyle: data.results[0]
             });
         })
+    }
+
+    componentDidMount() {
+        this.updateComponent();
+    }
+
+    getSnapshotBeforeUpdate() {
+        this.updateComponent();
+        return null;
     }
 
     render() {

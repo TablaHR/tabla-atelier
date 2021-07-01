@@ -2,7 +2,7 @@
 import React, { Component } from 'react'
 import {CText} from './CText.jsx'
 /*
-Use：<Square_button click={click_method} Text={'display_text} style = {css_Style} type={'add'}/>
+Use：<CButton onClick={click_method} Text={'display_text} style = {css_Style} type={'add'}/>
  */
 import './css/CButton.css'
 export default class CButton extends Component {

@@ -7,6 +7,7 @@ import ReviewList from './ReviewList.jsx';
 import $ from 'jquery';
 
 import text, {CText, CTextDemoView} from '../shared/CText.jsx';
+import { getActiveProductInfo, getActiveProductStyles } from '../../serverHelpers/ratingsServerHelper.js'
 
 class Ratings extends React.Component {
   constructor(props) {

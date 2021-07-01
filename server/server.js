@@ -6,19 +6,27 @@ const port = process.env.EXPRESS_PORT;
 const cors = require('cors');
 var multer = require('multer');
 var FormData = require('form-data');
+const AWS = require('aws-sdk');
+var fs = require('fs');
 
 // Middlewear
 app.use(cors());
+const s3 = new AWS.S3({
+  accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
+});
 app.use(express.static("./client/dist"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }))
 var upload = multer({ dest: 'uploads/' });
 
+var activeProduct = 22124;
+
 app.get('/active-product', (req, res) => {
 
   let config = {
       method: 'GET',
-      url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products/' + 22122, // Force product id until logic is implemented
+      url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products/' + activeProduct, // Force product id until logic is implemented
       headers: { 'Authorization': process.env.GITHUB_TOKEN }
   };
 
@@ -36,7 +44,7 @@ app.get('/active-product-styles', (req, res) => {
 
   let config = {
       method: 'GET',
-      url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products/' + 22122 + '/styles', // Force product id until logic is implemented
+      url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products/' + activeProduct + '/styles', // Force product id until logic is implemented
       headers: { 'Authorization': process.env.GITHUB_TOKEN }
   };
 
@@ -48,6 +56,11 @@ app.get('/active-product-styles', (req, res) => {
       .catch(function (error) {
           console.log(error);
       });
+});
+
+app.post('/change-active-product', (req, res) => {
+  activeProduct = req.body.id;
+  res.sendStatus(200)
 });
 
 
@@ -132,20 +145,23 @@ app.post('/reviews', (req, res) => {
 
 app.post('/uploadreviewimage', upload.single('image'), function (req, res) {
 
-  cloudinary.config({
-    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
-    api_key: process.env.CLOUDINARY_API,
-    api_secret: process.env.CLOUDINARY_SECRET
+  const BUCKET_NAME = process.env.AWS_S3BUCKET_REVIEW_PHOTOS;
+  const fileContent = fs.readFileSync(req.file.path);
+  const params = {
+      Bucket: BUCKET_NAME,
+      Key: `${Date.now()}_${req.file.originalname}`, // file name as it should be called in the bucket
+      Body: fileContent
+  };
+
+  s3.upload(params, function(err, data) {
+      if (err) {
+        res.status(503).send(err);
+      } else {
+        res.status(201).send({postedURL: data.Location});
+      }
   });
 
-  cloudinary.v2.uploader.upload(req.file.path,
-  function(error, result) {
-    if (error) {
-      console.log(error);
-    } else {
-      res.status(201).send({postedURL: result.url});
-    }
-  });
+
 
 });
 
@@ -257,6 +273,29 @@ app.post('/addreport', (req, res) => {
     .catch(function (response) {
       res.sendStatus(500);
     });
+
+});
+
+app.post('/click', (req, res) => {
+
+const BUCKET_NAME = process.env.AWS_S3BUCKET_CLICKS;
+
+const params = {
+    Bucket: BUCKET_NAME,
+    StorageClass: 'S3 Glacier Storage',
+    Key: `${Date.now()}_sample.txt`, // file name as it should be called in the bucket
+    Body: 'some words to pass as a sample' //text as it should be in the file
+};
+
+s3.upload(params, function(err, data) {
+    if (err) {
+      res.status(503).send(err);
+    } else {
+      res.status(201).send(data.Location);
+    }
+});
+
+
 
 });
 
