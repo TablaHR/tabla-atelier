@@ -20,11 +20,14 @@ class App extends React.Component {
 
   render() {
     return (
-    <div>
-      <Product id={this.state.id}/>
-      <Related id={this.state.id} changeProduct={this.handleChange}/>
-      <Ratings id={this.state.id}/>
-    </div>);
+    <div style={{display: "flex", justifyContent: "center"}}>
+      <div style={{maxWidth: "1000px"}}>
+        <Product id={this.state.id}/>
+        <Related id={this.state.id} changeProduct={this.handleChange}/>
+        <Ratings id={this.state.id}/>
+      </div>
+    </div>
+);
   }
 }
 
