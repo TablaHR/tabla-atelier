@@ -11,10 +11,12 @@ var fs = require('fs');
 
 // Middlewear
 app.use(cors());
+
 const s3 = new AWS.S3({
   accessKeyId: process.env.AWS_ACCESS_KEY_ID,
   secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
 });
+
 app.use(express.static("./client/dist"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }))
@@ -78,6 +80,7 @@ app.post('/related', (req, res) => {
     })
     .catch(function (error) {
       console.log(error);
+      res.sendStatus(500);
     });
 });
 
@@ -94,6 +97,7 @@ app.post('/card', (req, res) => {
     })
     .catch(function (error) {
     console.log(error);
+    res.sendStatus(500);
     });
 });
 
@@ -109,6 +113,7 @@ app.post('/cardimage', (req, res) => {
     })
     .catch(function (error) {
     console.log(error);
+    res.sendStatus(500);
     });
 
 });
@@ -124,6 +129,7 @@ app.post('/review/meta', (req, res) => {
     })
     .catch(function (error) {
       console.log(error);
+      res.sendStatus(500);
     });
 
 });
@@ -140,6 +146,7 @@ app.post('/reviews', (req, res) => {
     })
     .catch(function (error) {
       console.log(error);
+      res.sendStatus(500);
     });
 });
 
@@ -234,6 +241,7 @@ app.post('/addreview', (req, res) => {
   })
   .catch(function (error) {
   console.log(error);
+
   });
 
 });
