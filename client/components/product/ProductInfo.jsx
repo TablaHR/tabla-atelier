@@ -4,6 +4,7 @@ import {CText} from '../shared/CText.jsx';
 import './css/ProductInfo.css';
 
 
+
 class ProductInfo extends React.Component {
     constructor(props) {
         super(props);

@@ -16,6 +16,7 @@ class Product extends React.Component {
             styles: null,
             activeProduct: null,
             fullscreen: false,
+            called: false,
         }
     }
 
@@ -26,10 +27,10 @@ class Product extends React.Component {
     }
 
     updateComponent() {
-        getActiveProductInfo().then((data) => {
+        getActiveProductInfo(this.props.id).then((data) => {
             this.setState({activeProduct: data});
         });
-        getActiveProductStyles().then((data) => {
+        getActiveProductStyles(this.props.id).then((data) => {
             this.setState({
                 styles: data.results,
                 selectedStyle: data.results[0]
@@ -41,14 +42,15 @@ class Product extends React.Component {
         this.updateComponent();
     }
 
-    getSnapshotBeforeUpdate() {
-        // this.updateComponent();
-        return null;
+    componentDidUpdate(prevProps, prevState, other) {
+        log(prevProps, prevState, this.state, other);
+        if (prevProps.id !== this.props.id) {
+            this.updateComponent();
+        }
     }
 
     viewToggle() {
         this.setState(prevState => ({fullscreen: !prevState.fullscreen}))
-        log(this.state.fullscreen)
     }
 
     render() {
