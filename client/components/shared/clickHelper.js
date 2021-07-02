@@ -5,7 +5,7 @@ const clickHelper = (func)=>{
   var d = new Date()
 
     return (e)=>{
-      axios.post(`${process.env.EXPRESS_SERVER}/card`,
+      axios.post(`${process.env.EXPRESS_SERVER}/click`,
       {element: e.nativeEvent.path,
         widget: e.nativeEvent.path.splice(-7)[0],
         time:d.toLocaleTimeString()
