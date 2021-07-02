@@ -37,12 +37,13 @@ export default class Related extends Component {
 
     ]).then(axios.spread((data1, data2) => {
       this.setState({
+        error:null,
         cur: data1.data,
         isLoading: false,
         items: [...new Set(data2.data)],
       });
     })).catch((error) =>{
-      alert(error);
+
       this.setState({error:"Refresh later"})
       }).then(function()
       {});
@@ -54,12 +55,13 @@ export default class Related extends Component {
         axios.post(`${process.env.EXPRESS_SERVER}/related`, {id: this.props.id}),
       ]).then(axios.spread((data1, data2) => {
         this.setState({
+          error:null,
           cur: data1.data,
           isLoading: false,
           items: [...new Set(data2.data)],
         });
       })).catch( (error) =>{
-        alert(error);
+
         this.setState({error:"Refresh later"})
         }).then(function()
         {});

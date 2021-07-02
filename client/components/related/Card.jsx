@@ -91,7 +91,7 @@ export default class Card extends Component {
         }
       }
     })).catch((error)=>{
-      alert(error);
+
       this.setState({error:"Refresh later"})
       }).then(function()
       {});
