@@ -1,6 +1,7 @@
 .featured {
     display: inline-block;
-    align-content: center;
+    align-content: left;
+    position: relative;
 }
 
 .featured-image {
@@ -16,6 +17,17 @@
     margin-top: -5px;
     position: absolute;
     z-index: 100;
+    color: white;
+    display: inline-block;
+}
+
+.image-carosel {
+    min-height: 400px;
+    max-height: 400px;
+    margin-left: -62%;
+    position: absolute;
+    z-index: 10;
+    margin-top: 100px;
     color: white;
     display: inline-block;
 }

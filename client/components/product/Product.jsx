@@ -58,7 +58,7 @@ class Product extends React.Component {
         return(
             <div className="product-master-grid" style={this.state.fullscreen ? {gridTemplateColumns: "2fr 0fr"}:{gridTemplateColumns: "2fr 1fr"}}>
                 <div className="leading" >
-                    <ImageGallery product={this.state.selectedStyle} stylesIdx={this.state.selectedStyleIdx} styles={this.state.styles} screenToggle={() => {this.viewToggle()}} switchStyle={(idx) => {this.switchStyle(idx)}}/>
+                    <ImageGallery product={this.state.selectedStyle} stylesIdx={this.state.selectedStyleIdx} styles={this.state.styles} screenToggle={() => {this.viewToggle()}} switchStyle={(idx) => {this.switchStyle(idx)}} fullscreen={this.state.fullscreen}/>
                 </div>
 
                 <div className="trailing" style={this.state.fullscreen ? {display: "none"}:{gridTemplateColumns: "inline-block"}}>

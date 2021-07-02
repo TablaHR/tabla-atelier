@@ -21,7 +21,6 @@ class App extends React.Component {
   render() {
     return (
     <div>
-      <button onClick={() => {this.setState({id: this.state.id + 1})}}>Rerender</button>
       <Product id={this.state.id}/>
       <Related id={this.state.id} changeProduct={this.handleChange}/>
       <Ratings id={this.state.id}/>
