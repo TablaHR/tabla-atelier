@@ -3,6 +3,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import ReviewTile from './ReviewTile.jsx';
 import Stars from '../shared/Stars.jsx';
+import CButton from '../shared/CButton.jsx';
 
 var reviewCharacteristics = {
   size: ['',
@@ -52,23 +53,28 @@ var reviewCharacteristics = {
 var ReviewList = function (props) {
     var reviewDisplayCounter = 0;
     return (
-      <div className="review-list-and-sorting">
-        <div className="review-sorting">
-          {(props.reviews.length >= 1) &&
-          <h4>{props.reviews.length} review{(props.reviews.length > 1) && <span>s</span>}, sorted by <span className="review-sort-type"><select name="sortType" onChange={props.changeSort}>
-          <option value="relevance" defaultValue>relevance</option>
-          <option value="date">date</option>
-          <option value="helpfulness">helpfulness</option>
-        </select></span></h4>
-          }
-        </div>
+      <React.Fragment>
+        <div className="review-sorting-search">
+          <div className="review-sorting">
+            {(props.reviews.length >= 1) &&
+            <h4>{props.reviews.length} review{(props.reviews.length > 1) && <span>s</span>}, sorted by <span className="review-sort-type"><select name="sortType" onChange={props.changeSort}>
+            <option value="relevance" defaultValue>relevance</option>
+            <option value="date">date</option>
+            <option value="helpfulness">helpfulness</option>
+          </select></span></h4>
+            }
+          </div>
 
-        <div className="review-search">
           <form>
-            <input type="text" placeholder="Search reviews by keyword...." onChange={props.handleSearchReviews}></input>
-            <button type="reset">Submit</button>
+            <div className="review-search">
+              <input className="review-search-text" type="text" placeholder="Search reviews by keyword...." onChange={props.handleSearchReviews}></input>
+              <div className="review-search-button">
+                <CButton Text={'SEARCH'} Type={"reset"} />
+              </div>
+            </div>
           </form>
         </div>
+        <div className="review-listings">
 
         {(props.reviews.length > 0) &&
         props.reviews.map((review, index) => {
@@ -81,22 +87,24 @@ var ReviewList = function (props) {
             reviewDisplayCounter++;
             return (
               <div className="review-list" key={review.review_id}>
-              <ReviewTile review={review} handleHelpful={props.handleHelpful} handleReport={props.handleReport} />
+              <ReviewTile review={review} handleHelpful={props.handleHelpful} handleReport={props.handleReport} handleReviewPhotoClick={props.handleReviewPhotoClick} photoclickedURL={props.photoclickedURL} />
               </div>
             );
           }
         })
         }
+        </div>
         <div className="review-controls">
-          <button onClick={props.moreReviews}>MORE REVIEWS</button>
-
+          <div className="review-more-reviews">
+            <CButton Click={props.moreReviews} Text={'MORE REVIEWS'} />
+          </div>
 
         <div className="modal-overlay closed" id="modal-overlay"></div>
 
         <div className="modal closed" id="modal">
           <button className="close-button" id="close-button" onClick={props.addReviewToggleModal}>&times;</button>
         <div className="modal-body">
-          <h1>Modal Example</h1>
+          <h1>Write Your Review</h1>
           <h2>About the {props.productName}</h2>
 
           <div onClick={props.changeAddReviewRating}>
@@ -343,26 +351,26 @@ var ReviewList = function (props) {
               </div>
               }
 
-            <label htmlFor="nickname">Review Summary</label>
-            <input type="text" id="nickname" name="nickname" maxLength="60" placeholder="Example: jackson11!" />
+            <label htmlFor="nickname">Username *</label>
+            <input type="text" id="nickname" name="nickname" maxLength="60" placeholder="Example: jackson11!" required />
             <h4>For privacy reasons, do not use your full name or email address.</h4>
 
-            <label htmlFor="nickname">Review Summary</label>
-            <input type="email" id="email" name="email" maxLength="60" placeholder="Example: jackson11@email.com" />
+            <label htmlFor="nickname">E-mail *</label>
+            <input type="email" id="email" name="email" maxLength="60" placeholder="Example: jackson11@email.com" required />
             <h4>For authentication reasons, you will not be emailed.</h4>
 
             {(props.addReviewRating > 0) &&
-            <input type="submit" value="Submit" />
+            <CButton Text={'SUBMIT'} Type={"submit"} />
             }
 
           </form>
         </div>
         </div>
-
-        <button id="open-button" className="open-button" onClick={props.addReviewToggleModal}>ADD A REVIEW +</button>
-
+        <div id="open-button" className="open-button">
+          <CButton Click={props.addReviewToggleModal} Text={'ADD A REVIEW'} />
         </div>
-      </div>
+        </div>
+      </React.Fragment>
     );
 
 }
