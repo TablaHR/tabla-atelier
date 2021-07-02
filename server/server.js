@@ -19,7 +19,7 @@ const s3 = new AWS.S3({
 
 app.use(express.static("./client/dist"));
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }))
+app.use(express.urlencoded({ extended: true }));
 var upload = multer({ dest: 'uploads/' });
 
 app.get('/active-product', (req, res) => {

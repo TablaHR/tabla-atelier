@@ -14,6 +14,7 @@ class Product extends React.Component {
         this.state = {
             selectedStyle: null,
             styles: null,
+            selectedStyleIdx:0,
             activeProduct: null,
             fullscreen: false,
             called: false,
@@ -22,7 +23,8 @@ class Product extends React.Component {
 
     switchStyle(idx) {
         this.setState({
-            selectedStyle: this.state.styles[idx]
+            selectedStyle: this.state.styles[idx],
+            selectedStyleIdx: idx
         });
     }
 
@@ -43,7 +45,6 @@ class Product extends React.Component {
     }
 
     componentDidUpdate(prevProps, prevState, other) {
-        log(prevProps, prevState, this.state, other);
         if (prevProps.id !== this.props.id) {
             this.updateComponent();
         }
@@ -57,12 +58,12 @@ class Product extends React.Component {
         return(
             <div className="product-master-grid" style={this.state.fullscreen ? {gridTemplateColumns: "2fr 0fr"}:{gridTemplateColumns: "2fr 1fr"}}>
                 <div className="leading" >
-                    <ImageGallery product={this.state.selectedStyle} screenToggle={() => {this.viewToggle()}}/>
+                    <ImageGallery product={this.state.selectedStyle} stylesIdx={this.state.selectedStyleIdx} styles={this.state.styles} screenToggle={() => {this.viewToggle()}} switchStyle={(idx) => {this.switchStyle(idx)}}/>
                 </div>
 
                 <div className="trailing" style={this.state.fullscreen ? {display: "none"}:{gridTemplateColumns: "inline-block"}}>
                     <ProductInfo product={this.state.activeProduct}/>
-                    <StyleSelector styles={this.state.styles} switchStyle={(idx) => {this.switchStyle(idx)}}/>
+                    <StyleSelector styles={this.state.styles} switchStyle={(idx) => {this.switchStyle(idx)}} stylesIdx={this.state.selectedStyleIdx}/>
                     <AddToCart product={this.state.selectedStyle}/>
                 </div>
             </div>
