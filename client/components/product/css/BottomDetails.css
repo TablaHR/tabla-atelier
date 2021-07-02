@@ -1,0 +1,28 @@
+.bottom-details-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 20px;
+  justify-content: center;
+  margin-top: 25px;
+  margin-left: 100px;
+  margin-right: 100px;
+}
+
+.leading-details {
+  text-align: left;
+  max-height: 100px;
+  justify-content: center;
+  border-right: 2px solid grey;
+}
+
+ul {
+  list-style: none;
+}
+
+ul li:before {
+  content: '✓   ';
+}
+
+li {
+  margin: 0 0 10px 0;
+}

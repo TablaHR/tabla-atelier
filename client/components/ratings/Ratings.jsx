@@ -355,7 +355,7 @@ class Ratings extends React.Component {
 
   render() {
     return (
-      <div className="reviews">
+      <div className="reviews" id="reviews">
         <div className="review-margin-top"></div>
         <div className="review-margin-left"></div>
         <ReviewGraphics ratings={this.state.ratings} recommended={this.state.recommended} characteristics={this.state.characteristics} display5Star={this.state.display5Star} display4Star={this.state.display4Star} display3Star={this.state.display3Star} display2Star={this.state.display2Star} display1Star={this.state.display1Star} starFilterOn={this.state.starFilterOn} handleStarFilterOn={this.handleStarFilterOn} handleStarFilterOff={this.handleStarFilterOff} />

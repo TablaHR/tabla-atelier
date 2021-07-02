@@ -146,7 +146,7 @@ export default class Card extends Component {
       return (
 
         <div className='card' >
-          <img alt={item.name} src = {image} onClick={clickHelper(()=>
+          <img alt={item.name} src = {image || "./sample.jpeg"} onClick={clickHelper(()=>
               this.props.changeProduct(this.props.itemId))} ></img>
           <div className="icon"
           onClick={clickHelper(clickIcon)}
