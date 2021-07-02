@@ -21,7 +21,7 @@ class BottomDetails extends React.Component {
     if (this.props.product) {
       var features = this.props.product.features.map((feature, idx) => {
         return <li key={idx}>{feature.feature}</li>
-      })
+      }).slice(0, 4)
     }
     return <div className="trailing-details">
       <ul>

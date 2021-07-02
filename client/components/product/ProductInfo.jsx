@@ -16,8 +16,8 @@ class ProductInfo extends React.Component {
             <div className="griditem">
                 <Stars className="griditem"/>
             </div>
-            <div className="griditem">
-                <CText text="Read all reviews" color="grey"/>
+            <div className="griditem" style={{textAlign: "left"}}>
+                <a style={{color: "grey"}} className={`review-link read-reviews`} href={"#reviews"}>Read Reviews</a>
             </div>
         </div>
         )
