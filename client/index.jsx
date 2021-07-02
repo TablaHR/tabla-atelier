@@ -29,7 +29,7 @@ class App extends React.Component {
       <button onClick={() => {this.setState({id: this.state.id + 1})}}>Rerender</button>
       {/* <Product id={this.state.id}/> */}
       <Related id={this.state.id} changeProduct={this.handleChange}/>
-      {/* <Ratings id={this.state.id}/> */}
+      <Ratings id={this.state.id}/>
     </div>);
   }
 }
