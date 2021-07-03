@@ -104,10 +104,17 @@ var ReviewList = function (props) {
         <div className="modal closed" id="modal">
           <button className="close-button" id="close-button" onClick={props.addReviewToggleModal}>&times;</button>
         <div className="modal-body">
-          <h1>Write Your Review</h1>
-          <h2>About the {props.productName}</h2>
+          <div className="add-review-heading">
+            <h1>Write Your Review</h1>
+          </div>
+          <div className="add-review-subheading">
+            <h2>About the {props.productName}</h2>
+          </div>
+          <div className="add-review-instructions">
+            <p>Please describe your experience with the product below. Required fields are marked with an asterisk (*).</p>
+          </div>
 
-          <div onClick={props.changeAddReviewRating}>
+          <div className="add-review-overall-rating" onClick={props.changeAddReviewRating}>
             <label>Overall Rating *&nbsp;
             <Stars rating={props.addReviewRating} />
             {(props.addReviewRating) === 1 &&
@@ -127,19 +134,21 @@ var ReviewList = function (props) {
             }
             </label>
           </div>
-          <form onSubmit={props.addReviewHandleSubmit}>
-            <label>
-              Do you recommend this product? *
-              <div>
-                <input type="radio" id="add-review-recommend-yes" name="recommend" value="yes" required />
-                <label htmlFor="add-review-recommend">Yes.</label>
-              </div>
-              <div>
-                <input type="radio" id="add-review-recommend-no" name="recommend" value="no" />
-                <label htmlFor="add-review-recommend">No.</label>
-              </div>
+          <form className="add-review-form" onSubmit={props.addReviewHandleSubmit}>
+            <div className="add-review-recommend">
+              <label>
+                Do you recommend this product? *
+                <div>
+                  <input type="radio" id="add-review-recommend-yes" name="recommend" value="yes" required />
+                  <label htmlFor="add-review-recommend">Yes.</label>
+                </div>
+                <div>
+                  <input type="radio" id="add-review-recommend-no" name="recommend" value="no" />
+                  <label htmlFor="add-review-recommend">No.</label>
+                </div>
 
-            </label>
+              </label>
+            </div>
             <div className="add-review-characteristics">
 
               <label className="characteristics-title">
@@ -308,60 +317,68 @@ var ReviewList = function (props) {
               </div>
               }
             </div>
-            <label htmlFor="review-summary">Review Summary</label>
-            <input type="text" id="review-summary" name="reviewSummary" maxLength="60" placeholder="Example: Best purchase ever!" />
-            <label htmlFor="review-body">Review Body *</label>
-            <textarea id="review-body" name="reviewBody" required minLength="50" maxLength="1000" placeholder="Why did you like this product or not?" onChange={props.handleReviewBodyText} />
-            {(props.reviewBodyTextCharacterCount) < 50 &&
-            <div><h4>Minimum required characters left: [{50 - props.reviewBodyTextCharacterCount}]</h4></div>
-            }
-            {(props.reviewBodyTextCharacterCount) >= 50 &&
-            <div><h4>Minimum reached</h4></div>
-            }
-
-            <label htmlFor="imageFile">Upload your photos</label>
-              <input type="file" id="image-file-1" accept="image/*" onChange={props.handleFiles} />
-              <div id="image-file-1-thumb"></div>
-
-	            {(props.numberImages >=1) &&
-              <div>
-                <input type="file" id="image-file-2" accept="image/*" onChange={props.handleFiles} />
-                <div id="image-file-2-thumb"></div>
-              </div>
+            <div className="add-review-summary">
+              <label className="review-summary-text" htmlFor="review-summary">Review Summary *&nbsp;</label>
+              <input className="review-summary-box" type="text" id="review-summary" name="reviewSummary" maxLength="60" placeholder="Example: Best purchase ever!" />
+            </div>
+            <div className="add-review-body">
+              <label className="add-review-body-text" htmlFor="review-body">Review Body *&nbsp;</label>
+              <textarea className="add-review-body-box" id="review-body" name="reviewBody" required minLength="50" maxLength="1000" placeholder="Why did you like this product or not?" onChange={props.handleReviewBodyText} />
+              {(props.reviewBodyTextCharacterCount) < 50 &&
+              <div className="review-body-characters"><h4>Minimum required characters left: [{50 - props.reviewBodyTextCharacterCount}]</h4></div>
               }
-
-              {(props.numberImages >= 2) &&
-              <div>
-                <input type="file" id="image-file-3" accept="image/*" onChange={props.handleFiles} />
-                <div id="image-file-3-thumb"></div>
-              </div>
+              {(props.reviewBodyTextCharacterCount) >= 50 &&
+              <div className="review-body-characters"><h4>Minimum reached</h4></div>
               }
+            </div>
+            <div className="add-review-upload-image">
+              <label htmlFor="imageFile">Upload your photos:&nbsp;</label>
+                <input type="file" id="image-file-1" accept="image/*" onChange={props.handleFiles} />
+                <div id="image-file-1-thumb"></div>
 
-              {(props.numberImages >= 3) &&
-              <div>
-                <input type="file" id="image-file-4" accept="image/*" onChange={props.handleFiles} />
-                <div id="image-file-4-thumb"></div>
-              </div>
+                {(props.numberImages >=1) &&
+                <div>
+                  <input type="file" id="image-file-2" accept="image/*" onChange={props.handleFiles} />
+                  <div id="image-file-2-thumb"></div>
+                </div>
+                }
+
+                {(props.numberImages >= 2) &&
+                <div>
+                  <input type="file" id="image-file-3" accept="image/*" onChange={props.handleFiles} />
+                  <div id="image-file-3-thumb"></div>
+                </div>
+                }
+
+                {(props.numberImages >= 3) &&
+                <div>
+                  <input type="file" id="image-file-4" accept="image/*" onChange={props.handleFiles} />
+                  <div id="image-file-4-thumb"></div>
+                </div>
+                }
+
+                {(props.numberImages >= 4) &&
+                <div>
+                  <input type="file" id="image-file-5" accept="image/*" onChange={props.handleFiles} />
+                  <div id="image-file-5-thumb"></div>
+                </div>
+                }
+            </div>
+            <div className="add-review-username">
+              <label className="review-username-text" htmlFor="nickname">Username *</label>
+              <input username="review-username-box" type="text" id="nickname" name="nickname" maxLength="60" placeholder="Example: jackson11!" required />
+              <h4>For privacy reasons, do not use your full name or email address.</h4>
+            </div>
+            <div className="add-review-email">
+              <label className="review-email-text" htmlFor="email">E-mail *&nbsp;</label>
+              <input className="review-email-box" type="email" id="email" name="email" maxLength="60" placeholder="Example: jackson11@email.com" required />
+              <h4>For authentication reasons, you will not be emailed.</h4>
+            </div>
+            <div className="add-review-rating">
+              {(props.addReviewRating > 0) &&
+              <CButton Text={'SUBMIT'} Type={"submit"} />
               }
-
-              {(props.numberImages >= 4) &&
-              <div>
-                <input type="file" id="image-file-5" accept="image/*" onChange={props.handleFiles} />
-                <div id="image-file-5-thumb"></div>
-              </div>
-              }
-
-            <label htmlFor="nickname">Username *</label>
-            <input type="text" id="nickname" name="nickname" maxLength="60" placeholder="Example: jackson11!" required />
-            <h4>For privacy reasons, do not use your full name or email address.</h4>
-
-            <label htmlFor="nickname">E-mail *</label>
-            <input type="email" id="email" name="email" maxLength="60" placeholder="Example: jackson11@email.com" required />
-            <h4>For authentication reasons, you will not be emailed.</h4>
-
-            {(props.addReviewRating > 0) &&
-            <CButton Text={'SUBMIT'} Type={"submit"} />
-            }
+            </div>
 
           </form>
         </div>
