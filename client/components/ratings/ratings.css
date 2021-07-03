@@ -235,7 +235,7 @@ img.review-photo {
     "comfort comfort"
     "quality quality"
     "length length"
-    "fit fit"
+    "fit fit";
 }
 .star-sorting {
   grid-area: starsorting;
@@ -413,6 +413,8 @@ img.review-photo {
   background: rgba(0, 0, 0, 0.6);
 }
 .modal-body {
+  display: grid;
+  row-gap: 1rem;
   position: absolute;
   top: 0;
   left: 0;
@@ -420,8 +422,95 @@ img.review-photo {
   height: 90%;
   overflow: auto;
   padding: 20px 50px 20px 20px;
-}
+  align-items: center;
+  grid-template-columns: 1fr;
+  grid-template-rows: 4vh 4vh 4vh 3vh auto;
+  grid-template-areas:
+  "add-review-title"
+  "add-review-subtitle"
+  "add-review-instructions"
+  "add-review-overall-rating"
+  "add-review-form";
 
+}
+.add-review-title {
+  grid-area: add-review-title;
+}
+.add-review-subtitle {
+  grid-area: add-review-subtitle;
+}
+.add-review-instructions {
+  grid-area: add-review-instructions;
+}
+.add-review-instructions p {
+  font-size: small;
+  font-style: oblique;
+  margin-right: 5rem;
+}
+.add-review-overall-rating {
+  grid-area: add-review-overall-rating;
+}
+.add-review-form {
+  grid-area: add-review-form;
+  display: grid;
+  row-gap: 1rem;
+  grid-template-columns: 1fr;
+  grid-template-rows: 6vh auto 4vh 10vh auto 8vh 8vh 8vh;
+  grid-template-areas:
+  "add-review-recommend"
+  "add-review-characteristics"
+  "add-review-summary"
+  "add-review-body"
+  "add-review-image"
+  "add-review-username"
+  "add-review-email"
+  "add-review-submit"
+  ;
+}
+.add-review-recommend {
+  grid-area: add-review-recommend;
+  align-self: center;
+}
+.add-review-characteristics {
+  grid-area: add-review-characteristics;
+}
+.add-review-summary {
+  grid-area: add-review-summary;
+  align-self: center;
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+  grid-template-rows: 1fr;
+  column-gap: 1rem;
+  grid-template-areas:
+  "review-summary-text review-summary-box";
+}
+.review-summary-text {
+  grid-area: review-summary-text;
+}
+.review-summary-box {
+  grid-area: review-summary-box;
+  margin-right: 5rem;
+}
+.add-review-body {
+  grid-area: add-review-body;
+  align-self: center;
+}
+.add-review-image {
+  grid-area: add-review-image;
+  align-self: center;
+}
+.add-review-username {
+  grid-area: add-review-username;
+  align-self: center;
+}
+.add-review-email {
+  grid-area: add-review-email;
+  align-self: center;
+}
+.add-review-submit {
+  grid-area: add-review-submit;
+  align-self: center;
+}
 .modal .close-button {
   position: absolute;
 
@@ -450,10 +539,10 @@ img.review-photo {
   display: block;
 
   /* Probably need media queries here */
-  width: 600px;
+  width: 1920px;
   max-width: 100%;
 
-  height: 700px;
+  height: 90vh;
   max-height: 100%;
 
   position: fixed;
