@@ -384,7 +384,7 @@ var ReviewList = function (props) {
         </div>
         </div>
         <div id="open-button" className="open-button">
-          <CButton Click={() => {props.addReviewToggleModal();}} Text={'ADD A REVIEW'} />
+          <CButton click={() => {props.addReviewToggleModal();}} Text={'ADD A REVIEW'} />
         </div>
         </div>
       </React.Fragment>

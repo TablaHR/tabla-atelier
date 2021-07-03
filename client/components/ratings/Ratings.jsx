@@ -60,6 +60,7 @@ class Ratings extends React.Component {
     this.handleStarFilterOn = this.handleStarFilterOn.bind(this);
     this.handleStarFilterOff = this.handleStarFilterOff.bind(this);
     this.handleReviewPhotoClick = this.handleReviewPhotoClick.bind(this);
+    this.moreReviews = this.moreReviews.bind(this);
   }
 
   addReviewToggleModal () {
