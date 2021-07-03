@@ -14,7 +14,7 @@
     margin-left: -15px;
     height: 15px;
     width: 15px;
-    background-color: green;
+    background-color: rgb(58, 145, 183);
     border-radius: 50%;
     display: inline-block;
     animation-name: fadein;
@@ -35,4 +35,3 @@
     from { opacity: 0}
     to   { opacity: 1}
 }
-  
