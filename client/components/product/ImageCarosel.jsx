@@ -15,7 +15,7 @@ class Slide extends React.Component {
   }
 
   render() {
-    return ( <img className={this.props.idx} src={this.props.image} style={{height: "50px", width: "50px", borderBottom: this.props.idx + "" === this.props.stylesIdx + "" ? "5px solid green":"none"}} onClick={(e) => {this.handleClick(e)}}></img>)
+    return ( <img className={this.props.idx} src={this.props.image} style={{height: "50px", width: "50px", borderBottom: this.props.idx + "" === this.props.stylesIdx + "" ? "5px solid rgb(54,143,182)":"none"}} onClick={(e) => {this.handleClick(e)}}></img>)
   }
 }
 
