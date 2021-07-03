@@ -57,6 +57,11 @@ class AddToCart extends React.Component {
         this.setState({selectedSizeIdx: event.target.value})
     }
 
+    addToCart() {
+        log(this.props);
+        this.props.addToCartGif();
+    }
+
     render() {
         return (
             <div className="addToCart">
@@ -71,10 +76,10 @@ class AddToCart extends React.Component {
 
                 <h1> </h1> {/* Temp Spacer */}
                 <div className="size-flexgrid">
-                    <CButton click={() => {log("Button clicked")}} Text={'ADD TO CART'} type={'add'}/>
+                    <CButton click={() => {this.addToCart()}} Text={'ADD TO CART'} type={'add'}/>
 
                     {/* TODO: CORRECTLY CENTER AND MANAGE INTERACTIONS */}
-                    <div className="starButton">
+                    <div className="starButton" style={{width: "30px", paddingLeft: "12px", paddingTop: "8px"}}>
                         <ClickableStars numStars={1}/>
                     </div>
                 </div>

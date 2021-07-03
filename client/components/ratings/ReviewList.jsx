@@ -96,7 +96,7 @@ var ReviewList = function (props) {
         </div>
         <div className="review-controls">
           <div className="review-more-reviews">
-            <CButton Click={props.moreReviews} Text={'MORE REVIEWS'} />
+            <CButton click={() => {log("invoked");props.moreReviews()}} Text={'MORE REVIEWS'} />
           </div>
 
         <div className="modal-overlay closed" id="modal-overlay"></div>
@@ -367,7 +367,7 @@ var ReviewList = function (props) {
         </div>
         </div>
         <div id="open-button" className="open-button">
-          <CButton Click={props.addReviewToggleModal} Text={'ADD A REVIEW'} />
+          <CButton Click={() => {props.addReviewToggleModal();}} Text={'ADD A REVIEW'} />
         </div>
         </div>
       </React.Fragment>

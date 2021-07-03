@@ -12,7 +12,6 @@ class ImageGallery extends React.Component {
     }
 
     renderCarosel() {
-        log(this.props)
         if (!this.props.fullscreen) {
             return <ImageCarosel stylesIdx={this.props.stylesIdx} styles={this.props.styles} switchStyle={(idx) => {this.props.switchStyle(idx)}}></ImageCarosel>;
         }

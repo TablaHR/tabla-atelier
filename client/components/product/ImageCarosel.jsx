@@ -11,7 +11,6 @@ class Slide extends React.Component {
   }
 
   handleClick(e) {
-    log(e.target, e.target.className[0])
     this.props.switchStyle(e.target.className[0]);
   }
 

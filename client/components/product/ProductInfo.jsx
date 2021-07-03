@@ -14,7 +14,7 @@ class ProductInfo extends React.Component {
         return (
         <div className="ratingbutton">
             <div className="griditem">
-                <Stars className="griditem"/>
+                <Stars className="griditem" rating={this.props.product ? this.props.product.rating:3.65}/>
             </div>
             <div className="griditem" style={{textAlign: "left"}}>
                 <a style={{color: "grey"}} className={`review-link read-reviews`} href={"#reviews"}>Read Reviews</a>

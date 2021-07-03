@@ -7,6 +7,7 @@ import AddToCart from './AddToCart.jsx'
 import ImageGallery from './ImageGallery.jsx'
 import { getActiveProductInfo, getActiveProductStyles } from '../../serverHelpers/productServerHelper.js'
 import BottomDetails from './BottomDetails.jsx'
+import {CText} from '../shared/CText.jsx';
 
 class Product extends React.Component {
     constructor(props) {
@@ -19,6 +20,7 @@ class Product extends React.Component {
             activeProduct: null,
             fullscreen: false,
             called: false,
+            addToCartGif: false,
         }
     }
 
@@ -52,6 +54,11 @@ class Product extends React.Component {
         }
     }
 
+    showAddToCartGif() {
+        this.setState({addToCartGif: true})
+        setTimeout(() => {this.setState({addToCartGif: false})}, 4000)
+    }
+
     viewToggle() {
         this.setState(prevState => ({fullscreen: !prevState.fullscreen}))
     }
@@ -65,9 +72,16 @@ class Product extends React.Component {
                     </div>
 
                     <div className="trailing" style={this.state.fullscreen ? {display: "none"}:{gridTemplateColumns: "inline-block"}}>
+                        <div className="add-to-cart-gif" style={{display: this.state.addToCartGif ? "inline-block":"none"}}>
+                            <img src='./addToCart.gif' style={{zIndex: 10, height: 100, width: 100, position: "absolute", marginTop: "500px"}}></img>
+                            <div style={{marginTop: "530px", position: "absolute", marginLeft: "120px"}}>
+                                <CText text="Added to Cart!" style="bold" size={1}></CText>
+                            </div>
+                        </div>
+
                         <ProductInfo product={this.state.activeProduct}/>
                         <StyleSelector styles={this.state.styles} switchStyle={(idx) => {this.switchStyle(idx)}} stylesIdx={this.state.selectedStyleIdx}/>
-                        <AddToCart product={this.state.selectedStyle}/>
+                        <AddToCart product={this.state.selectedStyle} addToCartGif={() => {this.showAddToCartGif()}}/>
                     </div>
                 </div>
 
