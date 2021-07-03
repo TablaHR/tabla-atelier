@@ -10,22 +10,23 @@ const AWS = require('aws-sdk');
 var fs = require('fs');
 
 // Middlewear
+app.use(cors());
+
 const s3 = new AWS.S3({
   accessKeyId: process.env.AWS_ACCESS_KEY_ID,
   secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
 });
+
 app.use(express.static("./client/dist"));
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }))
+app.use(express.urlencoded({ extended: true }));
 var upload = multer({ dest: 'uploads/' });
-
-var activeProduct = 22124;
 
 app.get('/active-product', (req, res) => {
 
   let config = {
       method: 'GET',
-      url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products/' + activeProduct, // Force product id until logic is implemented
+      url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products/' + req.query.id, // Force product id until logic is implemented
       headers: { 'Authorization': process.env.GITHUB_TOKEN }
   };
 
@@ -43,7 +44,7 @@ app.get('/active-product-styles', (req, res) => {
 
   let config = {
       method: 'GET',
-      url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products/' + activeProduct + '/styles', // Force product id until logic is implemented
+      url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products/' + req.query.id + '/styles', // Force product id until logic is implemented
       headers: { 'Authorization': process.env.GITHUB_TOKEN }
   };
 
@@ -56,12 +57,6 @@ app.get('/active-product-styles', (req, res) => {
           console.log(error);
       });
 });
-
-app.post('/change-active-product', (req, res) => {
-  activeProduct = req.body.id;
-  res.sendStatus(200)
-});
-
 
 // Posts to RELATED endpoint
 app.post('/related', (req, res) => {
@@ -77,6 +72,7 @@ app.post('/related', (req, res) => {
     })
     .catch(function (error) {
       console.log(error);
+      res.sendStatus(500);
     });
 });
 
@@ -93,6 +89,7 @@ app.post('/card', (req, res) => {
     })
     .catch(function (error) {
     console.log(error);
+    res.sendStatus(500);
     });
 });
 
@@ -108,6 +105,7 @@ app.post('/cardimage', (req, res) => {
     })
     .catch(function (error) {
     console.log(error);
+    res.sendStatus(500);
     });
 
 });
@@ -123,6 +121,7 @@ app.post('/review/meta', (req, res) => {
     })
     .catch(function (error) {
       console.log(error);
+      res.sendStatus(500);
     });
 
 });
@@ -139,6 +138,7 @@ app.post('/reviews', (req, res) => {
     })
     .catch(function (error) {
       console.log(error);
+      res.sendStatus(500);
     });
 });
 
@@ -233,6 +233,7 @@ app.post('/addreview', (req, res) => {
   })
   .catch(function (error) {
   console.log(error);
+
   });
 
 });

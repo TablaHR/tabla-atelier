@@ -14,9 +14,9 @@
   color: black;
   font-size: 15px;
   background:linear-gradient(to left, rgba(255,255,255,0),white);
-  padding-right:10px;
+  padding-right:30px;
   padding-top:200px;
-  padding-left:30px;
+  padding-left:10px;
   padding-bottom:200px;
 }
 .swiper-container {

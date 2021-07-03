@@ -8,6 +8,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import Comparing from './Comparing.jsx';
 import './Card.css';
 import Stars from '../shared/Stars.jsx';
+import {clickHelper} from  '../shared/clickHelper.js'
 
 function SimpleDialog(props) {
   const {onClose, selectedValue, open, item, cur} = props;
@@ -89,13 +90,20 @@ export default class Card extends Component {
           break;
         }
       }
-    }));
+    })).catch((error)=>{
+      alert(error);
+      this.setState({error:"Refresh later"})
+      }).then(function()
+      {});
     }
   }
   render() {
+    var d= new Date();
     if (this.props.cur === 'blank') {
       return <div className='card' >
-      <img src = {image} onClick={()=>{this.props.add(this.props.item_id)}} ></img>
+      <img alt={'blank'} src = {"./sample.jpeg"}
+        onClick={clickHelper(()=>this.props.add(this.props.item_id))
+      } ></img>
       <div>Add current product!</div>
     </div>
 
@@ -103,6 +111,7 @@ export default class Card extends Component {
     // eslint-disable-next-line max-len
     const {error, isLoading, item, image, price, discountPrice, display, ratings} = this.state;
     const cur = this.props.cur;
+    const clickIcon = this.props.add||this.handleClickOpen;
     let rating = 0;
     let Star;
     if (Object.keys(ratings).length !== 0) {
@@ -120,7 +129,7 @@ export default class Card extends Component {
       Star = <div></div>;
     }
 
-    if (error) {
+    if (error !== null) {
       return <div>Error: {error} </div>;
     } else if (isLoading) {
       return <div>Loading...</div>;
@@ -130,19 +139,17 @@ export default class Card extends Component {
         displayPrice= <div>${price}</div>;
       } else {
         displayPrice= <div style={{display: 'flex'}}>
-          <div style = {{color: 'red'}}>${discountPrice} </div>
+          <div style = {{color: '#e31c3d'}}>${discountPrice} </div>
           <div style ={{textDecoration: 'line-through'}}>  ${price}</div>
         </div>;
       }
       return (
 
         <div className='card' >
-          <img src = {image} onClick={()=>this.props.changeProduct(this.props.itemId)}></img>
+          <img alt={item.name} src = {image || "./sample.jpeg"} onClick={clickHelper(()=>
+              this.props.changeProduct(this.props.itemId))} ></img>
           <div className="icon"
-          onClick={this.props.add||this.handleClickOpen}
-          // onClick={()=>{
-          //   this.props.add();
-          // }}
+          onClick={clickHelper(clickIcon)}
           >{this.props.icon}</div>
           <div>{item.category}</div>
           <div>{item.name}</div>

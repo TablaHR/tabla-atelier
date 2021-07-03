@@ -8,6 +8,7 @@ import 'swiper/swiper-bundle.min.css';
 import './button.css';
 import {FaRegStar} from 'react-icons/fa';
 import {CgCloseO} from 'react-icons/cg';
+import {CText} from '../shared/CText.jsx';
 import axios from 'axios';
 
 SwiperCore.use([Navigation]);
@@ -30,15 +31,21 @@ export default class Related extends Component {
     const myoutfits = JSON.parse(localStorage.getItem('myoutfits') || '[]');
     this.setState({myoutfits});
     axios.all([
+
       axios.post(`${process.env.EXPRESS_SERVER}/card`, {id: this.props.id}),
       axios.post(`${process.env.EXPRESS_SERVER}/related`, {id: this.props.id}),
+
     ]).then(axios.spread((data1, data2) => {
       this.setState({
         cur: data1.data,
         isLoading: false,
         items: [...new Set(data2.data)],
       });
-    }));
+    })).catch((error) =>{
+      alert(error);
+      this.setState({error:"Refresh later"})
+      }).then(function()
+      {});
   }
   componentDidUpdate(prevProps){
     if (this.props.id!== prevProps.id){
@@ -51,7 +58,13 @@ export default class Related extends Component {
           isLoading: false,
           items: [...new Set(data2.data)],
         });
-      }));
+      })).catch( (error) =>{
+        alert(error);
+        this.setState({error:"Refresh later"})
+        }).then(function()
+        {});
+
+
     }
 
   }
@@ -73,9 +86,12 @@ export default class Related extends Component {
     const {error, isLoading, items, cur, myoutfits} = this.state
 
     if (error) {
-      return <div>Error: {error} </div>;
+      return <div id='Related' >
+        <h1 style={{color: 'gray'}}>RELATED PRODUCTS </h1>
+        <div>Error: {error}</div>
+         </div>;
     } else if (isLoading) {
-      return <div>Loading...</div>;
+      return <div id='Related' >Loading...</div>;
     } else {
       const params = {
         slidesPerView: 4.5,
@@ -85,9 +101,9 @@ export default class Related extends Component {
       };
 
       return (
-        <div>
-          <h1 style={{color: 'gray'}}>RELATED PRODUCTS {this.props.id}</h1>
-          <Swiper {...params}>
+        <div id='Related' style={{marginTop: "100px", marginBottom: "25px"}}>
+          <CText size={1} text="RELATED PRODUCTS" style="light"></CText>
+          <Swiper {...params} style={{width: "1000px"}}>
             {items.map((itemId) =>(
               <SwiperSlide key={itemId}>
                 <Card
@@ -99,8 +115,8 @@ export default class Related extends Component {
               </SwiperSlide>
             ))}
           </Swiper>
-          <h1 style={{color: 'gray'}}>YOUR OURFIT</h1>
-          <Swiper {...params}>
+          <CText size={1} text="YOUR OUTFIT" style="light"></CText>
+          <Swiper {...params} style={{width: "1000px"}}>
             <SwiperSlide >
               <div onClick={()=>this.addToMyoutfits(cur.id)}>
                 <Card item_id={cur.id} cur={'blank'} add ={()=>{}} changeProduct={()=>{}}/>

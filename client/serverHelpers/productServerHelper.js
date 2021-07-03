@@ -1,9 +1,9 @@
 var axios = require('axios');
 
 // Returns the active product
-const getActiveProductInfo = function() {
+const getActiveProductInfo = function(id) {
     return new Promise((res, rej) => {
-        axios.get(`${process.env.EXPRESS_SERVER}/active-product`)
+        axios.get(`${process.env.EXPRESS_SERVER}/active-product`, { params: {id}})
             .then((data) => {
                 res(data.data);
             })
@@ -14,9 +14,9 @@ const getActiveProductInfo = function() {
 }
 
 // Returns the relevant styles
-const getActiveProductStyles = function () {
+const getActiveProductStyles = function (id) {
     return new Promise((res, rej) => {
-        axios.get(`${process.env.EXPRESS_SERVER}/active-product-styles`)
+        axios.get(`${process.env.EXPRESS_SERVER}/active-product-styles`, { params: {id}})
             .then((data) => {
                 res(data.data);
             })
@@ -26,12 +26,7 @@ const getActiveProductStyles = function () {
     });
 }
 
-const updateActiveProduct = function (id) {
-    return axios.post(`${process.env.EXPRESS_SERVER}/change-active-product`, {id});
-}
-
 module.exports = {
-    updateActiveProduct: updateActiveProduct,
     getActiveProductInfo: getActiveProductInfo,
     getActiveProductStyles: getActiveProductStyles,
 }

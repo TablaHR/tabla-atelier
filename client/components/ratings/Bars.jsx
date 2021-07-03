@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
 
 var Bars = function (props) {
@@ -10,10 +11,10 @@ var Bars = function (props) {
   };
 
   return (
-    <span className="bars-container">
+    <div className="bars-container">
       <span className="bars"></span>
       <span className="barsoverlap" style={ratingStyle}></span>
-    </span>
+    </div>
   );
 }
 

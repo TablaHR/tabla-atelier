@@ -21,3 +21,6 @@
     grid-gap: 0;
 }
 
+.trailing {
+    display: inline-block;
+}
