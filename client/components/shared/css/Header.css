@@ -1,15 +1,10 @@
 .header {
   font-family: Helvetica, sans-serif;
   display: grid;
-  grid-template-columns: auto 1fr auto;
+  grid-template-columns: 1fr;
   grid-template-rows: 8vh;
   grid-template-areas:
-  "next-product logo-header .";
-}
-.change-to-next-product {
-  grid-area: next-product;
-  justify-self: start;
-  align-self: start;
+  "logo-header";
 }
 .header-logo {
   grid-area: logo-header;

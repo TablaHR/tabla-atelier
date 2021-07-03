@@ -12,9 +12,6 @@ var Header = function (props) {
           <h4>{props.announcement || ''}</h4>
         </div>
       </div>
-      <div className="change-to-next-product">
-        <button onClick={props.changeToNextProduct}>Change to Next Product</button>
-      </div>
     </div>
   );
 }
