@@ -14,7 +14,7 @@ export default class CButton extends Component {
           <CText text={this.props.Text} style="semibold" size={0.8}/>
         </div>
 
-        <button variant="outline-dark" className="CButton" type={this.props.Type || "button"} onClick={this.props.Click || null}></button>
+        <button variant="outline-dark" className="CButton" type={this.props.Type || "button"} onClick={() => {this.props.click() || null}}></button>
         <h3 className="plus">+</h3>
       </div>
     )

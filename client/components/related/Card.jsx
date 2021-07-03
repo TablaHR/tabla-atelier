@@ -9,6 +9,7 @@ import Comparing from './Comparing.jsx';
 import './Card.css';
 import Stars from '../shared/Stars.jsx';
 import {clickHelper} from  '../shared/clickHelper.js'
+import {CText} from '../shared/CText.jsx';
 
 function SimpleDialog(props) {
   const {onClose, selectedValue, open, item, cur} = props;
@@ -151,9 +152,11 @@ export default class Card extends Component {
           <div className="icon"
           onClick={clickHelper(clickIcon)}
           >{this.props.icon}</div>
-          <div>{item.category}</div>
-          <div>{item.name}</div>
-          <div>{displayPrice}</div>
+          <div style={{marginTop: "-15px"}}>
+            <CText text={item.category} size={1} style="regular" spacing="10px"></CText>
+            <CText text={item.name} size={0.75} style="light" spacing="10px"></CText>
+            <CText text={displayPrice} size={0.75} style="light" spacing="10px"></CText>
+          </div>
           {Star}
           <br />
           <SimpleDialog open={display}

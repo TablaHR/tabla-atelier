@@ -16,7 +16,8 @@ class CText extends React.Component {
   render() {
     const style = {
       "fontSize": `${this.props.size || 1}em`,
-      "color": `${this.props.color || "black"}`
+      "color": `${this.props.color || "black"}`,
+      "height": `${this.props.spacing}`,
     }
 
     switch(this.props.style) {
@@ -62,7 +63,7 @@ class CTextDemoView extends React.Component {
 
       </div>
     )
-  } 
+  }
 }
 
 export {

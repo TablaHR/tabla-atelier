@@ -35,7 +35,6 @@ class ClickableStars extends React.Component {
     for (var i=0; i<this.props.numStars; i++) {
       stars.push(<span className="c-star" id={i} key={i} onClick={this.onClick}>&#9734;</span>)
     }
-    log(stars);
     this.setState({stars});
   }
 

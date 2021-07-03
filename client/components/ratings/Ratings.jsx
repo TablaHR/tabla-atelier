@@ -44,7 +44,7 @@ class Ratings extends React.Component {
       photoclickedURL: ''
     };
     this.sortReviews = this.sortReviews.bind(this);
-    this.moreReviews = this.moreReviews.bind(this);
+    this.views = this.moreReviews.bind(this);
     this.fetchReviews = this.fetchReviews.bind(this);
     this.changeSort = this.changeSort.bind(this);
     this.changeAddReviewRating = this.changeAddReviewRating.bind(this);
