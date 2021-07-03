@@ -14,26 +14,20 @@ p {
 .reviews{
   font-family: Helvetica, sans-serif;
   display: grid;
-  grid-template-columns: auto 18rem 4rem 36rem auto;
+  grid-template-columns: 18rem 4rem 36rem;
   grid-template-rows: 0.1fr 0.25fr 6fr 0.5fr;
   grid-template-rows: 3vh 12vh 75vh 10vh;
   grid-template-areas:
-    "top top top top top"
-    "marginleft staraverage marginmiddle reviewsorting marginright"
-    "marginleft barssliders marginmiddle reviewlist marginright"
-    "marginleft barssliders marginmiddle reviewcontrols marginright";
+    "top top top"
+    "staraverage marginmiddle reviewsorting"
+    "barssliders marginmiddle reviewlist"
+    "barssliders marginmiddle reviewcontrols";
 }
 .review-margin-top {
   grid-area: top;
 }
-.review-margin-left {
-  grid-area: marginleft;
-}
 .review-margin-middle {
   grid-area: marginmiddle;
-}
-.review-margin-right {
-  grid-area: marginright;
 }
 .review-listings {
   grid-area: reviewlist;

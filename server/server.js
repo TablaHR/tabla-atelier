@@ -278,24 +278,21 @@ app.post('/addreport', (req, res) => {
 
 app.post('/click', (req, res) => {
 
-const BUCKET_NAME = process.env.AWS_S3BUCKET_CLICKS;
-
-const params = {
-    Bucket: BUCKET_NAME,
-    StorageClass: 'S3 Glacier Storage',
-    Key: `${Date.now()}_sample.txt`, // file name as it should be called in the bucket
-    Body: 'some words to pass as a sample' //text as it should be in the file
-};
-
-s3.upload(params, function(err, data) {
-    if (err) {
-      res.status(503).send(err);
-    } else {
-      res.status(201).send(data.Location);
+  var configAddClicks = {
+    method: 'POST',
+    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/interactions`,
+    data: req.body,
+    headers: {
+      'Authorization': process.env.GITHUB_TOKEN
     }
-});
-
-
+  };
+  axios(configAddClicks)
+  .then(function (response) {
+    res.sendStatus(201);
+  })
+  .catch(function (response) {
+    res.sendStatus(422);
+  });
 
 });
 
