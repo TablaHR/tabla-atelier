@@ -33,7 +33,7 @@ class Product extends React.Component {
 
     updateComponent() {
         getActiveProductInfo(this.props.id).then((data) => {
-            log(data)
+            console.log(data)
             this.setState({activeProduct: data});
         });
         getActiveProductStyles(this.props.id).then((data) => {

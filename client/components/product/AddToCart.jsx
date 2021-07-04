@@ -76,7 +76,7 @@ class AddToCart extends React.Component {
 
                 <h1> </h1> {/* Temp Spacer */}
                 <div className="size-flexgrid">
-                    <CButton click={() => {this.addToCart()}} Text={'ADD TO CART'} type={'add'}/>
+                    <CButton click={() => {this.addToCart()}} Text={'ADD TO CART'} type={'add'} aria={'Add to Cart Button'} />
 
                     {/* TODO: CORRECTLY CENTER AND MANAGE INTERACTIONS */}
                     <div className="starButton" style={{width: "30px", paddingLeft: "12px", paddingTop: "8px"}}>

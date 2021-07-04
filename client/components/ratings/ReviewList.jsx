@@ -69,7 +69,7 @@ var ReviewList = function (props) {
             <div className="review-search">
               <input className="review-search-text" type="text" placeholder="Search reviews by keyword...." onChange={props.handleSearchReviews}></input>
               <div className="review-search-button">
-                <CButton Text={'SEARCH'} Type={"reset"} />
+                <CButton Text={'SEARCH'} Type={"reset"} aria={'Search Text of Reviews Button'}/>
               </div>
             </div>
           </form>
@@ -96,7 +96,7 @@ var ReviewList = function (props) {
         </div>
         <div className="review-controls">
           <div className="review-more-reviews">
-            <CButton click={() => {log("invoked");props.moreReviews()}} Text={'MORE REVIEWS'} />
+            <CButton click={() => {props.moreReviews()}} Text={'MORE REVIEWS'} aria={'Display More Reviews Button'} />
           </div>
 
         <div className="modal-overlay closed" id="modal-overlay"></div>
@@ -376,7 +376,7 @@ var ReviewList = function (props) {
             </div>
             <div className="add-review-rating">
               {(props.addReviewRating > 0) &&
-              <CButton Text={'SUBMIT'} Type={"submit"} />
+              <CButton Text={'SUBMIT'} Type={"submit"} aria={'Submit New Rating Button'} />
               }
             </div>
 
@@ -384,7 +384,7 @@ var ReviewList = function (props) {
         </div>
         </div>
         <div id="open-button" className="open-button">
-          <CButton click={() => {props.addReviewToggleModal();}} Text={'ADD A REVIEW'} />
+          <CButton click={() => {props.addReviewToggleModal();}} Text={'ADD A REVIEW'} aria={'Add a Review Button'} />
         </div>
         </div>
       </React.Fragment>
