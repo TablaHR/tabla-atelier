@@ -61,6 +61,8 @@ class Ratings extends React.Component {
     this.handleStarFilterOff = this.handleStarFilterOff.bind(this);
     this.handleReviewPhotoClick = this.handleReviewPhotoClick.bind(this);
     this.moreReviews = this.moreReviews.bind(this);
+
+    this.fetchReviews(props.id);
   }
 
   addReviewToggleModal () {
@@ -192,6 +194,8 @@ class Ratings extends React.Component {
   fetchReviews(id) {
     var successfulFetch = (response) => {
       var fetchAndSort = this.sortReviews(response.results);
+      var serverResponse = {reviews: fetchAndSort, productName: response.name, ratings: response.ratings, recommended: response.recommended, characteristics: response.characteristics};
+      console.log(JSON.stringify(serverResponse));
       this.setState({reviews: fetchAndSort, productName: response.name, ratings: response.ratings, recommended: response.recommended, characteristics: response.characteristics});
     };
     var idData = JSON.stringify({id: this.props.id});
@@ -368,9 +372,7 @@ class Ratings extends React.Component {
     )
   }
 
-  componentDidMount() {
-    this.fetchReviews(this.props.id);
-  }
+
 
   componentDidUpdate(prevProps) {
     if (this.props.id !== prevProps.id) {

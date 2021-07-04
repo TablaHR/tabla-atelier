@@ -24,9 +24,9 @@ class App extends React.Component {
     return (
     <div style={{display: "flex", justifyContent: "center"}}>
       <div style={{maxWidth: "1000px"}}>
-        <Header announcement={this.state.announcement} />
+{/*         <Header announcement={this.state.announcement} />
         <Product id={this.state.id}/>
-        <Related id={this.state.id} changeProduct={this.handleChange}/>
+        <Related id={this.state.id} changeProduct={this.handleChange}/> */}
         <Ratings id={this.state.id}/>
       </div>
     </div>
