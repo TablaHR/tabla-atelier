@@ -41,7 +41,7 @@ class ImageCarosel extends React.Component {
 
   render() {
     return (
-    <Swiper style={{width: "50px", maxHeight:"300px", minHeight:"200px"}} slidesPerView={3} direction={"vertical"} onSlideChange={() => console.log('slide change')} onSwiper={(swiper) => console.log(swiper)}>
+    <Swiper style={{width: "50px", maxHeight:"300px", minHeight:"200px"}} slidesPerView={3} direction={"vertical"} >
       <SwiperSlide>{this.renderAvailableStyles()}</SwiperSlide>
     </Swiper>)
   }

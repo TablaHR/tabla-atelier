@@ -51,7 +51,19 @@ test('Loads 2 Reviews in Reviews List after State is Updated', () => {
   const wrapper = mount(<Ratings />);
   wrapper.setState(firstState, () => {
     console.log(wrapper.find('div.review-list').length);
+
     expect(wrapper.find('div.review-list')).toHaveLength(2);
+
+  });
+
+});
+
+test('Tests Whether Star Average Generates Correct Number Upon Render', () => {
+  const wrapper = mount(<Ratings />);
+  wrapper.setState(firstState, () => {
+
+    var stars = wrapper.find('div.star-average-text p').text();
+    expect(stars).toContain((((1 * Number(firstState.ratings[1])) + (2 * Number(firstState.ratings[2])) + (3 * Number(firstState.ratings[3])) + (4 * Number(firstState.ratings[4])) + (5 * Number(firstState.ratings[5]))) / (Number(firstState.ratings[1]) + Number(firstState.ratings[2]) + Number(firstState.ratings[3]) + Number(firstState.ratings[4]) + Number(firstState.ratings[5]))).toFixed(2).toString());
   });
 
 });
